@@ -1,0 +1,68 @@
+---
+project: 'scp_ocu_5gnr'
+project_creation_date: '2020-05-07'
+project_category: ''
+lifecycle_state: 'Incubation'
+project_lead: &oran_scp_ocu_5gnr_ptl
+    name: 'Yingying Wang'
+    email: 'wangyingying@chinamobile.com'
+    id: 'yingyingwang'
+    company: 'China Mobile'
+    timezone: 'China/Beijing'
+primary_contact: *oran_scp_ocu_5gnr_ptl
+issue_tracking:
+    type: 'jira'
+    url: 'https://jira.o-ran-sc.org/projects/'
+    key: 'scp_ocu_5gnr'
+mailing_list:
+    type: 'groups.io'
+    url: 'technical-discuss@lists.o-ran-sc.org'
+    tag: '[]'
+realtime_discussion:
+    type: 'irc'
+    server: 'freenode.net'
+    channel: '#oran'
+meetings:
+    - type: 'gotomeeting+irc'
+      agenda: 'https://wiki.o-ran-sc.org/display/'
+      url: ''
+      server: 'freenode.net'
+      channel: '#oran'
+      repeats: ''
+      time: ''
+repositories:
+    - scp/ocu/5gnr
+committers:
+    - <<: *oran_scp_ocu_5gnr_ptl
+    - name: 'Chunjing Yuan'
+      email: 'yuanchunjing@ict.ac.cn'
+      company: ''
+      id: 'ycjict'
+      timezone: 'China/Beijing'
+    - name: 'Yuanyuan Wang'
+      email: 'wangyuanyuan@ict.ac.cn'
+      company: ''
+      id: 'cindywang'
+      timezone: 'China/Beijing'
+    - name: 'Shuyuan Zhang'
+      email: 'zhangshuyuan@sylincom.com'
+      company: ''
+      id: 'zhangshuyuan'
+      timezone: 'China/Beijing'
+    - name: 'Shuzheng Liu'
+      email: 'dzlsz1992@163.com'
+      company: ''
+      id: 'owepen'
+      timezone: 'China/Beijing'
+    - name: 'Zecheng Fang'
+      email: 'zcfang1096@163.com'
+      company: ''
+      id: 'zcfang'
+      timezone: 'China/Beijing'
+tsc:
+    # yamllint disable rule:line-length
+    approval: 'https://wiki.o-ran-sc.org/pages/viewpage.action?pageId=20873426'
+    changes:
+        - type: ''
+          name: ''
+          link: ''
