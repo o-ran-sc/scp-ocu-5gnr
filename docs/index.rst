@@ -2,7 +2,7 @@
 .. SPDX-License-Identifier: CC-BY-4.0
 .. Copyright (C) 2020 ICT/CAS
 
-Welcome to O-RAN SC your_repo Documentation
+Welcome to O-RAN SC scp-ocu-5gnr Documentation
 ===========================================
 
 .. toctree::
@@ -10,7 +10,7 @@ Welcome to O-RAN SC your_repo Documentation
    :caption: Contents:
 
    overview.rst
-
+   release-notes.rst
 
 
 * :ref:`genindex`
