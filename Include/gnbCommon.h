@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 #ifndef _GNB_COMMON_H_
 #define _GNB_COMMON_H_
 
@@ -58,7 +70,7 @@ extern struct timeval procStart, procEnd;
 
 
 #define MAX_TASK_NUM                 60
-#define MAX_TASK_NAME_LEN            256 
+#define MAX_TASK_NAME_LEN            256
 #define MAX_QUEUE_NUM                20
 #define MAX_QUEUE_MSG_NUM            256
 #define MAX_IP_ADDR_STRING_LEN       256
@@ -101,7 +113,7 @@ extern struct timeval procStart, procEnd;
 /*MAX IPV6 ADDR LEN*/
 #define MAX_IPV6ADDR_LEN (16)
 
-#define MAX_ENTITY_MANAGE_MSG_NUM 100 
+#define MAX_ENTITY_MANAGE_MSG_NUM 100
 #define CHECK_FUNCTION_RET(ret) \
         do { \
             if (VOS_OK != (ret)) { \
@@ -124,13 +136,13 @@ extern UINT32 f1apGetModuleId();
 /***********************************************************************************************************
 ********************************************* enum define*************************************************
 ************************************************************************************************************/
-    
+
 /* IP Type */
 typedef enum ipAddrType
 {
-    IPv4,                                           
-    IPv6,                                           
-    IPTypeMax,                                      
+    IPv4,
+    IPv6,
+    IPTypeMax,
 }IpAddrType_e;
 
 typedef enum
@@ -145,10 +157,10 @@ typedef enum
 /** log level */
 typedef enum gnbLogLevel
 {
-	LOG_CRIT = 1,        ///<  critical conditions 
-	LOG_ERR,             ///<  error conditions 
-	LOG_WARNING,         ///<  warning conditions 
-	LOG_INFO,            ///<  informational 
+	LOG_CRIT = 1,        ///<  critical conditions
+	LOG_ERR,             ///<  error conditions
+	LOG_WARNING,         ///<  warning conditions
+	LOG_INFO,            ///<  informational
 	LOG_DEBUG,           ///<  debug info
 } gnbLogLevel_e;
 
@@ -173,7 +185,7 @@ typedef INT32 (*HOST_TASK_INIT_FUNCPTR)(void);
 ************************************************************************************************************/
 
 /* IPV4 Address */
-typedef struct 
+typedef struct
 {
    UINT16  port;
    UINT32  address;
@@ -189,7 +201,7 @@ typedef struct cmInetIpv6Addr
 
 /* IP Address */
 typedef struct ipAddress
-{   
+{
     IpAddrType_e       ipType; /* type of transport address */
     union
     {
@@ -205,7 +217,7 @@ typedef struct  ngapRanName
 }NgapRanName_t;
 
 /* user task info */
-typedef struct 
+typedef struct
 {
     UINT32  userTaskId;
     UINT32  hostTaskId;
@@ -215,7 +227,7 @@ typedef struct
 } UserTaskInfo_t;
 
 /* Host task info */
-typedef struct 
+typedef struct
 {
     UINT32  hostTaskId;
     UINT32  procId;
@@ -226,11 +238,11 @@ typedef struct
 
 /* user task table info */
 typedef struct
-{    
+{
     UINT32                  userTaskId;
     UINT32                  hostTaskId;
     CHAR                    userTaskName[MAX_TASK_NAME_LEN];/*线程名称*/
-    ULONG                   userModuleID; 
+    ULONG                   userModuleID;
     UINT32                  userTaskPriority;/*优先级*/
     USER_TASK_INIT_FUNCPTR  userTaskInitPtr;
     USER_TASK_FUNCPTR       userTaskEntry;/*线程执行函数*/
@@ -262,12 +274,12 @@ typedef struct
 {
     UINT8         vosTaskId;
     vos_module_t  vosModule;
-    VOS_HANDLE    taskHandle;    
+    VOS_HANDLE    taskHandle;
 }MoudleInfo_t;
 
 typedef struct
 {
-    UCHAR                  ipAddrStr[MAX_IP_ADDR_STRING_LEN];   
+    UCHAR                  ipAddrStr[MAX_IP_ADDR_STRING_LEN];
     UINT32                 port;
 }IpAddrStr_t;
 
@@ -281,7 +293,7 @@ typedef struct
 {
     UINT32             vosTaskId;
     SockAddrStr_t      ipAddrStr;
-    
+
     SockAddrStr_t      clientAddrInfo;
 }TaskSockAddrInfo_t;
 
@@ -307,11 +319,11 @@ typedef struct
 
 typedef struct
 {
-    
+
 }UdpSocketMsg_t;
 typedef struct
 {
-    
+
 }TcpSocketMsg_t;
 
 typedef struct
@@ -322,22 +334,22 @@ typedef struct
     struct sctp_sndrcvinfo sri;/*收到的SCTP消息信息*/
     LONG            msg_flags;/*链路信息*/
     UINT32          assocState;/*链路状态*/
-    
+
 }SctpSocketMsg_t;
 
 typedef struct
 {
-    
+
 }UnixUdpSocketMsg_t;
 
 typedef struct
 {
-    
+
 }UnixTcpSocketMsg_t;
 
 /*
 SOCKET msg
-*/ 
+*/
 typedef struct
 {
     UINT32 socketMsgType;
@@ -363,15 +375,15 @@ typedef struct
 /*
 1.非SOCKET msg 格式化为接口数据
 2.SOCKET msg格式化为：SocketMsg_t数据+接口数据
-*/ 
+*/
 typedef struct
 {
     UINT32   srcModuleId;
     UINT32   dstModuleId;
-    UINT32   msgSap;  
-    UINT32   msgCode;    
-    UINT32   msgLen;  
-    UINT8    msgBuf[MSG_MAX_BUFFER_LEN];      
+    UINT32   msgSap;
+    UINT32   msgCode;
+    UINT32   msgLen;
+    UINT8    msgBuf[MSG_MAX_BUFFER_LEN];
 } ModuleMsg_t;
 
 
@@ -379,12 +391,12 @@ typedef struct
 /** 采用非VOS通信方式的模块需要提供的额外参数 */
 typedef struct
 {
-    module_comm_type_t type;                ///< 通信方式 
+    module_comm_type_t type;                ///< 通信方式
     union{
         vos_sockaddr_t addr;                ///< socket 通信
         sctp_para_t    sctp;                ///< sctp   通信
     }u;
-    receive_handler  recv_handle;           ///< 接收函数 
+    receive_handler  recv_handle;           ///< 接收函数
     LONG             maxClient;             ///< tcp server 允许的连接数
     BOOL             soloMode;              ///< 如果为真，则单独创建接收线程；如果为假，则由 VOS socket代理任务负责接收
     LONG             fdIdx;                 ///< 无需关心
@@ -396,25 +408,25 @@ typedef struct
 ************************************************************************************************************/
 
 /*********************************** Mib_t ***************************************/
-typedef enum mibSubCarrierSpacingCommon 
+typedef enum mibSubCarrierSpacingCommon
 {
     MIB_subCarrierSpacingCommon_scs15or60   = 0,
     MIB_subCarrierSpacingCommon_scs30or120  = 1
 } MibSubCarrierSpacingCommon_e;
 
-typedef enum mibDmrsTypeaPosition 
+typedef enum mibDmrsTypeaPosition
 {
     MIB_dmrs_TypeA_Position_pos2    = 0,
     MIB_dmrs_TypeA_Position_pos3    = 1
 } MibDmrsTypeaPosition_e;
 
-typedef enum mibCellBarred 
+typedef enum mibCellBarred
 {
     MIB_cellBarred_barred   = 0,
     MIB_cellBarred_notBarred    = 1
 } MibCellBarred_e;
 
-typedef enum mibIntraFreqReselection 
+typedef enum mibIntraFreqReselection
 {
     MIB_intraFreqReselection_allowed    = 0,
     MIB_intraFreqReselection_notAllowed = 1
@@ -426,20 +438,20 @@ typedef enum
     mibCellBarredNotBarred = 1
 } CellBarred_e;
 
-typedef enum 
+typedef enum
 {
     mibIntraFreqReselectionAllowed = 0,
     mibIntraFreqReselectionNotAllowed = 1
 } IntraFreqReselection_e;
 
-typedef struct PDCCHConfigSIB1 
+typedef struct PDCCHConfigSIB1
 {
     UINT8          controlResourceSetZero;
     UINT8          searchSpaceZero;
 
 }PDCCHConfigSIB1_t;
 
-typedef struct mib 
+typedef struct mib
 {
     UINT8                               systemFrameNumber;
     MibSubCarrierSpacingCommon_e        subCarrierSpacingCommon;
@@ -459,7 +471,7 @@ typedef struct macCellCfgPara_s
 }macCellCfgPara_t;
 
 /*********************************** SIB1_t ***************************************/
-typedef enum connEstFailureControlCount 
+typedef enum connEstFailureControlCount
 {
     NR_ConnEstFailureControl__connEstFailCount_n1  = 0,
     NR_ConnEstFailureControl__connEstFailCount_n2  = 1,
@@ -467,7 +479,7 @@ typedef enum connEstFailureControlCount
     NR_ConnEstFailureControl__connEstFailCount_n4  = 3
 } ConnEstFailureControlCount_e;
 
-typedef enum connEstFailureControlOffsetValidity 
+typedef enum connEstFailureControlOffsetValidity
 {
     NR_ConnEstFailureControl__connEstFailOffsetValidity_s30    = 0,
     NR_ConnEstFailureControl__connEstFailOffsetValidity_s60    = 1,
@@ -488,7 +500,7 @@ typedef struct connEstFailCtrl
 	UINT8	 								 connEstFailOffset;         /*option*/
 } ConnEstFailCtrl_t;
 
-typedef enum timerT300 
+typedef enum timerT300
 {
     NR_UE_TimersAndConstants__t300_ms100   = 0,
     NR_UE_TimersAndConstants__t300_ms200   = 1,
@@ -499,8 +511,8 @@ typedef enum timerT300
     NR_UE_TimersAndConstants__t300_ms1500  = 6,
     NR_UE_TimersAndConstants__t300_ms2000  = 7
 } TimerT300_e;
-    
-typedef enum timerT301 
+
+typedef enum timerT301
 {
     NR_UE_TimersAndConstants__t301_ms100   = 0,
     NR_UE_TimersAndConstants__t301_ms200   = 1,
@@ -511,8 +523,8 @@ typedef enum timerT301
     NR_UE_TimersAndConstants__t301_ms1500  = 6,
     NR_UE_TimersAndConstants__t301_ms2000  = 7
 } TimerT301_e;
-    
-typedef enum timerT310 
+
+typedef enum timerT310
 {
     NR_UE_TimersAndConstants__t310_ms0     = 0,
     NR_UE_TimersAndConstants__t310_ms50    = 1,
@@ -522,8 +534,8 @@ typedef enum timerT310
     NR_UE_TimersAndConstants__t310_ms1000  = 5,
     NR_UE_TimersAndConstants__t310_ms2000  = 6
 } TimerT310_e;
-    
-typedef enum timerN310 
+
+typedef enum timerN310
 {
     NR_UE_TimersAndConstants__n310_n1  = 0,
     NR_UE_TimersAndConstants__n310_n2  = 1,
@@ -534,8 +546,8 @@ typedef enum timerN310
     NR_UE_TimersAndConstants__n310_n10 = 6,
     NR_UE_TimersAndConstants__n310_n20 = 7
 } TimerN310_e;
-    
-typedef enum timerT311 
+
+typedef enum timerT311
 {
     NR_UE_TimersAndConstants__t311_ms1000  = 0,
     NR_UE_TimersAndConstants__t311_ms3000  = 1,
@@ -545,8 +557,8 @@ typedef enum timerT311
     NR_UE_TimersAndConstants__t311_ms20000 = 5,
     NR_UE_TimersAndConstants__t311_ms30000 = 6
 } TimerT311_e;
-    
-typedef enum timerN311 
+
+typedef enum timerN311
 {
     NR_UE_TimersAndConstants__n311_n1  = 0,
     NR_UE_TimersAndConstants__n311_n2  = 1,
@@ -557,8 +569,8 @@ typedef enum timerN311
     NR_UE_TimersAndConstants__n311_n8  = 6,
     NR_UE_TimersAndConstants__n311_n10 = 7
 } TimerN311_e;
-    
-typedef enum timerT319 
+
+typedef enum timerT319
 {
     NR_UE_TimersAndConstants__t319_ms100   = 0,
     NR_UE_TimersAndConstants__t319_ms200   = 1,
@@ -588,10 +600,10 @@ typedef struct ueTimersAndConstants {
 typedef struct  cellAccessInfo
 {
     UINT16                  bitMask;
-    UINT16                  plmnInfoNum;  
+    UINT16                  plmnInfoNum;
     PlmnInformation_t       plmnInfo[MAX_PLMN];
     BOOL                    cellReservedForOtherUse;    /*option*/
-    
+
 } CellAccessInfo_t;
 
 #define    RA_ASSOCIATION_PERIOD_INDEX         (1<<0)
@@ -602,7 +614,7 @@ typedef struct  siReqRes
     UINT8                   raPreambleStartIndex;
     UINT8                   raAssociationPeriodIndex;   /*option*/
     UINT8                   raSsbOccasionMaskIndex;     /*option*/
-    
+
 } SiReqRes_t;
 
 #define    PRACH_CONFIGURATION_INDEX         (1<<0)
@@ -626,13 +638,13 @@ typedef struct  siRequestConfig
     UINT8                   preambleTransMax;               /*option*/
     UINT8                   powerRampingStep;               /*option*/
     UINT8                   raResponseWindow;               /*option*/
-    UINT8                   ssbPerRachOccasion;             
+    UINT8                   ssbPerRachOccasion;
     UINT8                   siRequestPeriod;                /*option*/
-    UINT16                  siRequestResourcesNum;  
+    UINT16                  siRequestResourcesNum;
     SiReqRes_t              siRequestResources[MAX_SI_MESSAGE];
 } SiRequestConfig_t;
 
-typedef enum schInfoSiPeriod 
+typedef enum schInfoSiPeriod
 {
     NR_SchedulingInfo__si_Periodicity_rf8  = 0,
     NR_SchedulingInfo__si_Periodicity_rf16 = 1,
@@ -643,7 +655,7 @@ typedef enum schInfoSiPeriod
     NR_SchedulingInfo__si_Periodicity_rf512    = 6
 } SchInfoSiPeriod_e;
 
-typedef enum sibType 
+typedef enum sibType
 {
     NR_SIB_TypeInfo__type_sibType2 = 0,
     NR_SIB_TypeInfo__type_sibType3 = 1,
@@ -655,7 +667,7 @@ typedef enum sibType
     NR_SIB_TypeInfo__type_sibType9 = 7
 } SibType_e;
 
-typedef enum sibAreaScope 
+typedef enum sibAreaScope
 {
     NR_SIB_TypeInfo__areaScope_true    = 0
 } SibAreaScope_e;
@@ -666,7 +678,7 @@ typedef enum sibAreaScope
 typedef struct sibTypeInfo
 {
     UINT16              bitMask;
-    SibType_e           type;           
+    SibType_e           type;
     UINT8               valueTag;       /*option*/
     SibAreaScope_e      areaScope;      /*option*/
 } SibTypeInfo_t;
@@ -676,7 +688,7 @@ typedef struct  siSchInfo
 
     BOOL                    siBroadcastStatus;
     SchInfoSiPeriod_e       siPeriodicity;
-    UINT16                  sibMappingNum; 
+    UINT16                  sibMappingNum;
     SibTypeInfo_t           sibMapping[MAX_SIB];
 
 } SiSchInfo_t;
@@ -699,7 +711,7 @@ typedef struct  nrControlResourceSet
     UINT64                   frequencyDomainResources;
 	long	               duration;
 	NrControlResourceSet_cce_REG_MappingType_PR present;
-	union ControlResourceSet_cce_REG_MappingType_u 
+	union ControlResourceSet_cce_REG_MappingType_u
 	{
 		struct ControlResourceSet_cce_REG_MappingType_interleaved
 		{
@@ -718,7 +730,7 @@ typedef struct  nrControlResourceSet
 	long	               pdcch_DMRS_ScramblingID;	        /* OPTIONAL */
 } NrControlResourceSet_t;
 
-typedef struct nrofCandidates 
+typedef struct nrofCandidates
 {
     long     aggregationLevel1;
     long     aggregationLevel2;
@@ -738,19 +750,19 @@ typedef enum nrSearchSpace_searchSpaceType_PR {
 #define	NrSearchSpaceTypeCommonDci_Format2_1_Presence	4
 #define	NrSearchSpaceTypeCommonDci_Format2_2_Presence	8
 #define	NrSearchSpaceTypeCommonDci_Format2_3_Presence	16
-typedef struct nrSearchSpaceType 
+typedef struct nrSearchSpaceType
 {
     NrSearchSpace_searchSpaceType_PR present;
-    union SearchSpace_searchSpaceType_u 
+    union SearchSpace_searchSpaceType_u
     {
-        struct SearchSpace_searchSpaceType_common 
+        struct SearchSpace_searchSpaceType_common
         {
 			UINT16							 bitMask;
 			struct SearchSpace_searchSpaceType_common_dci_Format0_0_AndFormat1_0
 			{
 			} dci_Format0_0_AndFormat1_0;//option
-		
-            struct SearchSpace_searchSpaceType_common_dci_Format2_0 
+
+            struct SearchSpace_searchSpaceType_common_dci_Format2_0
             {
 #define NrSearchSpaceTypeAggLevel1Chosen  1
 #define NrSearchSpaceTypeAggLevel2Chosen  2
@@ -769,7 +781,7 @@ typedef struct nrSearchSpaceType
 			struct SearchSpace_searchSpaceType_common_dci_Format2_1
 			{
 			} dci_Format2_1;//optional
-			
+
 			struct SearchSpace_searchSpaceType_common_dci_Format2_2
 			{
 			} dci_Format2_2;//optional
@@ -782,11 +794,11 @@ typedef struct nrSearchSpaceType
                 long     dummy2;
             } dci_Format2_3;//optional
         } common;
-     struct SearchSpace_searchSpaceType_specific 
+     struct SearchSpace_searchSpaceType_specific
      {
         long     dci_Formats;
      }specific;
-     
+
     } choice;
 }NrSearchSpaceType_t;
 
@@ -819,11 +831,11 @@ typedef struct  nrSearchSpace
     UINT16                 bitmask;
 	long      	           searchSpaceId;
 	long	               controlResourceSetId;	/* OPTIONAL */
-	
-	struct SearchSpaceMonitoringSlotPeriodicityAndOffset 
+
+	struct SearchSpaceMonitoringSlotPeriodicityAndOffset
 	{
 		NrSearchSpaceMonitoringSlotPeriodicityAndOffset_PR present;
-		union SearchSpaceMonitoringSlotPeriodicityAndOffset_u 
+		union SearchSpaceMonitoringSlotPeriodicityAndOffset_u
 		{
 			int	     sl1;
 			long	 sl2;
@@ -842,7 +854,7 @@ typedef struct  nrSearchSpace
 			long	 sl2560;
 		} choice;
 	} monitoringSlotPeriodicityAndOffset;/* OPTIONAL */
-	
+
 	long	               duration;	/* OPTIONAL */
 	UINT16	               monitoringSymbolsWithinSlot;	/* OPTIONAL */
 	NrofCandidates_t       nrofCandidates;
@@ -868,7 +880,7 @@ typedef struct PDCCHCfgCommon
     long                   searchSpaceZero;	                    /* OPTIONAL */
     UINT8                  searchSpaceNum;
     NrSearchSpace_t        searchSpace[MAX_SEARCHSPACE_NUM];
-    
+
 	long	               searchSpaceSIB1;             	    /* OPTIONAL */
 	long	               searchSpaceOtherSystemInformation;	/* OPTIONAL */
 	long	               pagingSearchSpace;	                /* OPTIONAL */
@@ -888,9 +900,9 @@ typedef struct  pdcchCfgCommon
     union Setup_Release_PDCCH_PR_u {
             UINT32 release;
             Pdcch_Cfg_Common_t setup;
-            
+
     }choice;
-	                   
+
 } PdcchCfgCommon_t;
 
 /* PUCCH-ConfigCommon */
@@ -913,7 +925,7 @@ typedef enum nrPucchCfgCommon_PR
 	NrPucchCfgCommon_PR_setup
 }NrPucchCfgCommon_PR;
 
-typedef struct nrPucchCfgCommon 
+typedef struct nrPucchCfgCommon
 {
 
 	NrPucchCfgCommon_PR present;
@@ -946,7 +958,7 @@ typedef struct  puschTimeDomainAlloc
 #define MAX_TIME_DOMAIN_NUM    16
 #define PdschTimeDomainAllocationChose   (1 << 0)
 typedef struct  pdsch_Cfg_Common_t
-{  
+{
       UINT16                 bitmask;
       UINT8                  timeDomainNum;
       PdschTimeDomainAlloc_t pdschTimeDomainAllocation[MAX_TIME_DOMAIN_NUM];  /* OPTIONAL */
@@ -965,7 +977,7 @@ typedef struct  pdschCfgCommon
     union Setup_Release_PDSCH_PR_u {
             UINT32 release;
             Pdsch_Cfg_Common_t setup;
-            
+
     }choice;
 
 } PdschCfgCommon_t;
@@ -1020,10 +1032,10 @@ typedef struct  specificCarrier
 typedef struct  freqInfoUlSib
 {
     UINT16                  bitMask;
-    UINT16                  nrMulBandNum;    
+    UINT16                  nrMulBandNum;
     NrMultiBand_t           nrMulBand[MAX_MULTI_BANDS];
     UINT32                  absoluteFrequencyPointA;        /*option*/
-    UINT16                  speCarrierNum; 
+    UINT16                  speCarrierNum;
     SpecificCarrier_t		speCarrier[MAX_SCS];
 	INT8					pMax;                           /*option*/
 	/*UINT8					frequencyShift7p5khz;		extension*/
@@ -1042,7 +1054,7 @@ typedef struct nrRachCfgGeneric_t
 	long	 ra_ResponseWindow;
 } NrRachCfgGeneric_t;
 
-typedef enum nrRachCfgCommon_ssb_perRACH_OccasionAndCB_PreamblesPerSSB 
+typedef enum nrRachCfgCommon_ssb_perRACH_OccasionAndCB_PreamblesPerSSB
 {
 	NrRACH_ConfigCommon_ssb_perRACH_OccasionAndCB_PreamblesPerSSB_PR_NOTHING,	/* No components present */
 	NrRACH_ConfigCommon_ssb_perRACH_OccasionAndCB_PreamblesPerSSB_PR_oneEighth,
@@ -1073,7 +1085,7 @@ typedef struct RACH_Config_Common
     UINT16                 bitmask;
 	NrRachCfgGeneric_t	   rachCfgGeneric;
 	long	               totalNumberOfRA_Preambles;	/* OPTIONAL */
-	struct RACH_ConfigCommon_ssb_perRACH_OccasionAndCB_PreamblesPerSSB 
+	struct RACH_ConfigCommon_ssb_perRACH_OccasionAndCB_PreamblesPerSSB
 	{
 		NrRachCfgCommon_ssb_perRACH_OccasionAndCB_PreamblesPerSSB_e present;
 		union ssbPerRachOccAndCBPreamblesPerSSB_u
@@ -1088,18 +1100,18 @@ typedef struct RACH_Config_Common
 			long	 sixteen;
 		} choice;
 	} ssbPerRachOccAndCBPreamblesPerSSB;
-	
+
 	struct rachCfgCommonGroupBconfigured
 	{
 		long	 ra_Msg3SizeGroupA;
 		long	 messagePowerOffsetGroupB;
 		long	 numberOfRA_PreamblesGroupA;
 	} groupBconfigured;/* OPTIONAL */
-	
+
 	long	        ra_ContentionResolutionTimer;
 	long	        rsrp_ThresholdSSB;	/* OPTIONAL */
 	long	        rsrp_ThresholdSSB_SUL;	/* OPTIONAL */
-	struct rachCfgCommonPrachRootSequenceIndex 
+	struct rachCfgCommonPrachRootSequenceIndex
 	{
 		NrRachCfgCommonPrachRootSequenceIndex_e present;
 		union rachCfgCommonPrachRootSequenceIndex_u
@@ -1146,13 +1158,13 @@ typedef struct nrPusch_ConfigCommon
 
 }NrPusch_ConfigCommon_t;
 
-typedef enum  
+typedef enum
 {
 	NrPuschCfgCommon_PR_NOTHING,	/* No components present */
 	NrPuschCfgCommon_PR_release,
 	NrPuschCfgCommon_PR_setup
 }NrPuschCfgCommon_PR;
-typedef struct nrPuschCfgCommon 
+typedef struct nrPuschCfgCommon
 {
 	NrPuschCfgCommon_PR present;
 	union NrPuschCfgCommon_u {
@@ -1224,7 +1236,7 @@ typedef	struct  sCS15KHZoneT_s
 
 typedef	struct  sCS30KHZoneT_SCS15KHZhalfT_s
 {
-	
+
 	UINT16		   poNum;
 	UINT16		   firstMonitorOccasionOfPO[MAX_PDCCH_MONITORING_OCCASION];
 
@@ -1277,7 +1289,7 @@ typedef struct  pcchConfig
 {
     UINT16         bitMask;
     UINT8          defaultPagingCycle;
-    
+
     struct PagingFrameOffset
     {   PagingFrameOffset_e		   present;
         union PagingFrame {
@@ -1292,12 +1304,12 @@ typedef struct  pcchConfig
     struct FirstPDCCH_MonitoringOccasionOfPO
     {   FirstPDCCH_MonitoringOccasionOfPO_e		   present;
         union PDCCH_MonitoringOccasion {
-			
+
 			SCS15KHZoneT_t	SCS15KHZoneT;
 			sCS30KHZoneT_SCS15KHZhalfT_t sCS30KHZoneT_SCS15KHZhalfT;
 			sCS60KHZoneT_SCS30KHZhalfT_SCS15KHZquarterT_t	sCS60KHZoneT_SCS30KHZhalfT_SCS15KHZquarterT;
 			sCS120KHZoneT_SCS60KHZhalfT_SCS30KHZquarterT_SCS15KHZoneEighthT_t	sCS120KHZoneT_SCS60KHZhalfT_SCS30KHZquarterT_SCS15KHZoneEighthT;
-			sCS120KHZhalfT_SCS60KHZquarterT_SCS30KHZoneEighthT_SCS15KHZoneSixteenthT_t	sCS120KHZhalfT_SCS60KHZquarterT_SCS30KHZoneEighthT_SCS15KHZoneSixteenthT;		
+			sCS120KHZhalfT_SCS60KHZquarterT_SCS30KHZoneEighthT_SCS15KHZoneSixteenthT_t	sCS120KHZhalfT_SCS60KHZquarterT_SCS30KHZoneEighthT_SCS15KHZoneSixteenthT;
 			sCS120KHZquarterT_SCS60KHZoneEighthT_SCS30KHZoneSixteenthT_t sCS120KHZquarterT_SCS60KHZoneEighthT_SCS30KHZoneSixteenthT;
 			sCS120KHZoneEighthT_SCS60KHZoneSixteenthT_t sCS120KHZoneEighthT_SCS60KHZoneSixteenthT;
 			sCS120KHZoneSixteenthT_t sCS120KHZoneSixteenthT;
@@ -1341,7 +1353,7 @@ typedef struct  tddUlDlCfgCom
 typedef struct  servingCellCfg
 {
     UINT16                   bitMask;
-    DlCfgCommonSIB_t         downlinkConfigCommon;  
+    DlCfgCommonSIB_t         downlinkConfigCommon;
     UlCfgCommonSIB_t         uplinkConfigCommon;        /*option*/
     UlCfgCommonSIB_t         supplementaryUplink;       /*option*/
 	UINT8					 nTimingAdvanceOffset;      /*option*/
@@ -1370,7 +1382,7 @@ typedef enum UacAcBarringListType_PR {
 typedef struct  uACBarringPerPLMN
 {
     UINT16                     bitMask;
-    UINT8                      plmnIdentityIndex;    
+    UINT8                      plmnIdentityIndex;
     UINT16                     BarringListNum;
     UacImplicitACBarringList_UacExplicitAcBarringList_PR  present;
     union UacAcBarringListType_u {
@@ -1421,16 +1433,16 @@ typedef struct  sib1UacBarringInfo
     UINT16                  uacBarringPerPLMNListNUM;
     UACBarringPerPLMN_t     uacBarringPerPLMNList[MAX_PLMN];          /*option*/
     UINT16                  uacBarringInfoSetListNUM;
-    UACBarringInfoSet_t     uacBarringInfoSetList[MAX_BARRING_SET];   
+    UACBarringInfoSet_t     uacBarringInfoSetList[MAX_BARRING_SET];
     Uac_AccessCategory1_SelectionAssistanceInfo_PR    present;
     UINT16                  individualPLMNListNUM;
     union uac_AccessCategory1_SelectionAssistanceInfo
     {
         UINT8                   plmnCommon;
-        UINT8                   individualPLMNList[MAX_PLMN]; 
+        UINT8                   individualPLMNList[MAX_PLMN];
 
     }choice;                                                         /*option*/
-    
+
 } Sib1UacBarringInfo_t;
 
 
@@ -1453,13 +1465,13 @@ typedef struct  sib1UacBarringInfo
 #define USEFULL_RESUMEID          (1 << 15)
 
 
-typedef struct sib1 
+typedef struct sib1
 {
     UINT16                              bitMask;
-    INT8                                qRxLevMin;        
+    INT8                                qRxLevMin;
     UINT8                               qRxLevMinOffsetd;               /*option*/
-    INT8                                qRxLevMinSUL;                   /*option*/    
-    INT8                                qQualMin;                       /*option*/ 
+    INT8                                qRxLevMinSUL;                   /*option*/
+    INT8                                qQualMin;                       /*option*/
     UINT8                               qQualMinOffset;                 /*option*/
 	CellAccessInfo_t	 				cellAccessRelateInfo;
 	ConnEstFailCtrl_t					connEstFailureCtrl;             /*option*/
@@ -1467,7 +1479,7 @@ typedef struct sib1
 	UINT16								siNum;
     SiSchInfo_t                         siSchedulInfo[MAX_SI_MESSAGE];  /*option*/
     SiRequestConfig_t                   siReqCfg;                       /*option*/
-    SiRequestConfig_t                   siReqCfgSul;                    /*option*/  
+    SiRequestConfig_t                   siReqCfgSul;                    /*option*/
     UINT32                              systemInformationAreaID;        /*option*/
 	ServingCellCfg_t					servingCellCfgCommon;           /*option*/
     BOOL                                ims_EmergencySupport;           /*option*/
@@ -1481,8 +1493,8 @@ typedef struct sib1
 typedef enum cmSib2QHyst
 {
 	qHystdB0 	= 0,
-	qHystdB1 	= 1,	
-	qHystdB2 	= 2,	
+	qHystdB1 	= 1,
+	qHystdB2 	= 2,
 	qHystdB3 	= 3,
 	qHystdB4	= 4,
 	qHystdB5	= 5,
@@ -1499,30 +1511,30 @@ typedef enum cmSib2QHyst
 }CmSib2QHyst_e;
 
 
-typedef enum cmSib2SfMedium 
+typedef enum cmSib2SfMedium
 {
 	qHystSFdBMedium0 	= 0,
-	qHystSFdBMedium2	= 1,	
-	qHystSFdBMedium4	= 2,	
+	qHystSFdBMedium2	= 1,
+	qHystSFdBMedium4	= 2,
 	qHystSFdBMedium6 	= 3
 }CmSib2SfMedium_e;
 
-typedef enum cmSib2SfHigh 
+typedef enum cmSib2SfHigh
 {
 	qHystSFdBHigh0 		= 0,
-	qHystSFdBHigh2 		= 1,	
-	qHystSFdBHigh4 		= 2,	
+	qHystSFdBHigh2 		= 1,
+	qHystSFdBHigh4 		= 2,
 	qHystSFdBHigh6 		= 3
 }CmSib2SfHigh_e;
-	
-typedef struct cmSib2QHystSf 
+
+typedef struct cmSib2QHystSf
 {
 	CmSib2SfMedium_e 	sfMedium;
-	CmSib2SfHigh_e 		sfHigh;	
+	CmSib2SfHigh_e 		sfHigh;
 }CmSib2QHystSf_t;
 
 
-typedef enum cmSib2TEvaluation 
+typedef enum cmSib2TEvaluation
 {
 	tEvaluationS30 		= 0,
 	tEvaluationS60 		= 1,
@@ -1534,7 +1546,7 @@ typedef enum cmSib2TEvaluation
 	tEvaluationSpare1 	= 7
 }CmSib2TEvaluation_e;
 
-typedef enum cmSib2THystNormal 
+typedef enum cmSib2THystNormal
 {
 	tHystNormalS30 		= 0,
 	tHystNormalS60 		= 1,
@@ -1547,7 +1559,7 @@ typedef enum cmSib2THystNormal
 }CmSib2THystNormal_e;
 
 
-typedef struct cmSib2MobilityStateParameters 
+typedef struct cmSib2MobilityStateParameters
 {
 	CmSib2TEvaluation_e  tEvaluation;
 	CmSib2THystNormal_e  tHystNormal;
@@ -1556,16 +1568,16 @@ typedef struct cmSib2MobilityStateParameters
 }CmSib2MobilityStateParameters_t;
 
 
-typedef struct cmSib2SpeedStateReselectionPars 
+typedef struct cmSib2SpeedStateReselectionPars
 {
 	CmSib2MobilityStateParameters_t 	mobilityStateParameters;
 	CmSib2QHystSf_t 					qHystSF;
 }CmSib2SpeedStateReselectionPars_t;
 
 #define THRESHOLD_RSRP_PRESENT                 (1 << 0)
-#define THRESHOLD_PSRQ_PRESENT        		   (1 << 1) 
-#define THRESHOLD_SINR_PRESENT           	   (1 << 2) 
-typedef struct cmSib2ThresholdNr 
+#define THRESHOLD_PSRQ_PRESENT        		   (1 << 1)
+#define THRESHOLD_SINR_PRESENT           	   (1 << 2)
+typedef struct cmSib2ThresholdNr
 {
 	UINT16		bitMask;
 	UINT8 		thresholdRSRP;    		/*0-127 OPTIONAL*/
@@ -1573,7 +1585,7 @@ typedef struct cmSib2ThresholdNr
 	UINT8   	thresholdSINR;			/*0-127 OPTIONAL*/
 }CmSib2ThresholdNr_t;
 
-typedef enum cmSib2QOffsetRange  
+typedef enum cmSib2QOffsetRange
 {
 	sib2qOffsetRangeMinus24  = 0,
 	sib2qOffsetRangeMinus22  = 1,
@@ -1608,22 +1620,22 @@ typedef enum cmSib2QOffsetRange
 	sib2qOffsetRangePlus24	 = 30,
 
 }CmSib2QOffsetRange_e;
-	
+
 #define NROF_SS_BLOCKS_TO_AVERAGE_PRESENT                 (1 << 0)
-#define ABS_THRESH_SS_BLOCKS_CONSOLIDATION_PRESENT        (1 << 1) 
-#define RANGE_TO_BEST_CELL_PRESENT           			  (1 << 2) 
-#define SPEED_STATE_RESELECTION_PARS_PRESENT         	  (1 << 3) 
+#define ABS_THRESH_SS_BLOCKS_CONSOLIDATION_PRESENT        (1 << 1)
+#define RANGE_TO_BEST_CELL_PRESENT           			  (1 << 2)
+#define SPEED_STATE_RESELECTION_PARS_PRESENT         	  (1 << 3)
 typedef struct cmSib2CellReselectionInfoCommon
 {
 	UINT16								bitMask;
 	UINT8 								nrofSsBlocksToAverage;               /*2-16 OPTIONAL*/
-	CmSib2ThresholdNr_t 				absThreshSsBlocksConsolidation;		 /*OPTIONAL*/ 
+	CmSib2ThresholdNr_t 				absThreshSsBlocksConsolidation;		 /*OPTIONAL*/
 	CmSib2QOffsetRange_e 				rangeToBestCell;					 /*OPTIONAL*/
 	CmSib2QHyst_e 						qHyst;
 	CmSib2SpeedStateReselectionPars_t   speedStateReselectionPars;
 } CmSib2CellReselectionInfoCommon_t;
 
-typedef enum cmSib2CellReselectionSubPriority  
+typedef enum cmSib2CellReselectionSubPriority
 {
 	cellReselectionSubPriorityoDot2	= 0,
 	cellReselectionSubPriorityoDot4	= 1,
@@ -1632,9 +1644,9 @@ typedef enum cmSib2CellReselectionSubPriority
 }CmSib2CellReselectionSubPriority_e;
 
 #define CM_SIB2_RESELECT_SERV_FREQ_SNON_INTRA_SEARCH_P        (1 << 0)
-#define CM_SIB2_RESELECT_SERV_FREQ_SNON_INTRA_SEARCH_Q        (1 << 1) 
-#define CM_SIB2_RESELECT_SERV_FREQ_THRESH_SERV_LOWQ           (1 << 2) 
-#define CM_SIB2_RESELECT_SERV_FREQ_SUB_PRIORITY         	  (1 << 3) 
+#define CM_SIB2_RESELECT_SERV_FREQ_SNON_INTRA_SEARCH_Q        (1 << 1)
+#define CM_SIB2_RESELECT_SERV_FREQ_THRESH_SERV_LOWQ           (1 << 2)
+#define CM_SIB2_RESELECT_SERV_FREQ_SUB_PRIORITY         	  (1 << 3)
 typedef struct cmSib2CellReselectionServingFreqInfo
 {
 	UINT16			   bitMask;
@@ -1663,7 +1675,7 @@ typedef struct cmSib2NrNsPmaxValue
 
 typedef struct cmSib2NrNsPmaxList
 {
-	CmSib2NrNsPmaxValue_t nRNsPmaxList[MAX_NR_NS_PMAX];	
+	CmSib2NrNsPmaxValue_t nRNsPmaxList[MAX_NR_NS_PMAX];
 } CmSib2NrNsPmaxList_t;
 
 
@@ -1677,30 +1689,30 @@ typedef struct cmSib2NrMultiBandInfo
 typedef struct cmSib2MultiFrequencyBandListNrSib
 {
 	CmSib2NrMultiBandInfo_t multiFrequencyBandListNrSib[MAX_MULTI_BANDS];
-		
+
 } CmSib2MultiFrequencyBandListNrSib_t;
 
 
-typedef enum cmSib2Duration 
+typedef enum cmSib2Duration
 {
 	durationSf1 = 0,
 	durationSf2 = 1,
 	durationSf3 = 2,
-	durationSf4 = 3,	
-	durationSf5 = 4,	
+	durationSf4 = 3,
+	durationSf5 = 4,
 }CmSib2Duration_e;
 
-typedef enum cmSib2SsMtcPresent 
+typedef enum cmSib2SsMtcPresent
 {
 	CM_SIB2_SSB_MTC_NOTHING = 0,
 	CM_SIB2_SSB_MTC_SF5 	= 1,
 	CM_SIB2_SSB_MTC_SF10 	= 2,
-	CM_SIB2_SSB_MTC_SF20 	= 3,	
-	CM_SIB2_SSB_MTC_SF40 	= 4,	
-	CM_SIB2_SSB_MTC_SF80 	= 5,	
-	CM_SIB2_SSB_MTC_SF160 	= 6,	
+	CM_SIB2_SSB_MTC_SF20 	= 3,
+	CM_SIB2_SSB_MTC_SF40 	= 4,
+	CM_SIB2_SSB_MTC_SF80 	= 5,
+	CM_SIB2_SSB_MTC_SF160 	= 6,
 }CmSib2SsMtcPresent_e;
-	
+
 typedef struct cmSib2SsbMtc  //choice sf5-sf160
 {
 	CmSib2SsMtcPresent_e present;
@@ -1711,35 +1723,35 @@ typedef struct cmSib2SsbMtc  //choice sf5-sf160
 	UINT8 sf80;	 //0-79
 	UINT8 sf160; //0-159
 	CmSib2Duration_e duration;
-		
+
 } CmSib2SsbMtc_t;
 
-typedef enum cmSib2SsbToMeasurePresent 
+typedef enum cmSib2SsbToMeasurePresent
 {
 	CM_SIB2_SSB_TO_MEASURE_NOTHING 	= 0,
 	CM_SIB2_SSB_TO_MEASURE_SHORT_BITMAP 	= 1,
 	CM_SIB2_SSB_TO_MEASURE_MEDIUM_BITMAP 	= 2,
-	CM_SIB2_SSB_TO_MEASURE_LONG_BITMAP 	= 3,	
+	CM_SIB2_SSB_TO_MEASURE_LONG_BITMAP 	= 3,
 }CmSib2SsbToMeasurePresent_e;
-	
-typedef struct cmSib2SsbToMeasure 
+
+typedef struct cmSib2SsbToMeasure
 {
 	CmSib2SsbToMeasurePresent_e 	present;
 	UINT8 	shortBitmap;      	//BIT STRING SIZE(4)
 	UINT8 	mediumBitmap;     	//BIT STRING SIZE(8)
 	UINT64 	longBitmap;			//BIT STRING SIZE(64)
-	
+
 } CmSib2SsbToMeasure_t;
 
 #define CM_INTRA_FREQ_CELL_RESELECT_QRX_LEV_MIN_SUL_PRESENT               	(1 << 0)
-#define CM_INTRA_FREQ_CELL_RESELECT_QUAL_MIN_PRESENT        				(1 << 1) 
-#define CM_INTRA_FREQ_CELL_RESELECT_SINTRA_SEARCH_Q_PRESENT           	 	(1 << 2) 
-#define CM_INTRA_FREQ_CELL_RESELECT_FREQUENCY_BAND_LIST_PRESENT         	(1 << 3) 
-#define CM_INTRA_FREQ_CELL_RESELECT_FREQUENCY_BAND_LIST_SUL_PRESENT         (1 << 4) 
-#define CM_INTRA_FREQ_CELL_RESELECT_PMAX_PRESENT         	  			 	(1 << 5) 
-#define CM_INTRA_FREQ_CELL_RESELECT_CM_SIB2_SSB_MTC_PRSENT         	  	 	(1 << 6) 
-#define CM_INTRA_FREQ_CELL_RESELECT_CM_SIB2_SS_RSSI_MEASUREMENT_PRSENT  	(1 << 7) 
-#define CM_INTRA_FREQ_CELL_RESELECT_CM_SIB2_SSB_TO_MEASURE_PRSENT  	 		(1 << 8) 
+#define CM_INTRA_FREQ_CELL_RESELECT_QUAL_MIN_PRESENT        				(1 << 1)
+#define CM_INTRA_FREQ_CELL_RESELECT_SINTRA_SEARCH_Q_PRESENT           	 	(1 << 2)
+#define CM_INTRA_FREQ_CELL_RESELECT_FREQUENCY_BAND_LIST_PRESENT         	(1 << 3)
+#define CM_INTRA_FREQ_CELL_RESELECT_FREQUENCY_BAND_LIST_SUL_PRESENT         (1 << 4)
+#define CM_INTRA_FREQ_CELL_RESELECT_PMAX_PRESENT         	  			 	(1 << 5)
+#define CM_INTRA_FREQ_CELL_RESELECT_CM_SIB2_SSB_MTC_PRSENT         	  	 	(1 << 6)
+#define CM_INTRA_FREQ_CELL_RESELECT_CM_SIB2_SS_RSSI_MEASUREMENT_PRSENT  	(1 << 7)
+#define CM_INTRA_FREQ_CELL_RESELECT_CM_SIB2_SSB_TO_MEASURE_PRSENT  	 		(1 << 8)
 typedef struct cmSib2IntraFreqCellReselectionInfo
 {
 	UINT16 									bitMask;
@@ -1758,7 +1770,7 @@ typedef struct cmSib2IntraFreqCellReselectionInfo
 	BOOL                      				deriveSSBIndexFromCell;
 } CmSib2IntraFreqCellReselectionInfo_t;
 
-typedef struct sib2 
+typedef struct sib2
 {
 	CmSib2CellReselectionInfoCommon_t 		 cellReselectionCommon;
 	CmSib2CellReselectionServingFreqInfo_t   cellReselectionServingFreq;
@@ -1766,7 +1778,7 @@ typedef struct sib2
 }Sib2_t;
 
 /**********************        Sib3_t       ************************/
-typedef enum cmSib3QOffsetRange  
+typedef enum cmSib3QOffsetRange
 {
 	sib3qOffsetRangeMinus24  = 0,
 	sib3qOffsetRangeMinus22  = 1,
@@ -1800,11 +1812,11 @@ typedef enum cmSib3QOffsetRange
     sib3qOffsetRangePlus22   = 29,
 	sib3qOffsetRangePlus24	 = 30
 }CmSib3QOffsetRange_e;
-	
+
 #define CM_INTRA_FREQ_NEIGH_CELL_QRX_LEV_MIN_OFFSET_CELL             (1 << 0)
-#define CM_INTRA_FREQ_NEIGH_CELL_QRX_LEV_MIN_OFFSET_SUL_CELL     	 (1 << 1) 
-#define CM_INTRA_FREQ_NEIGH_CELL_QUAL_MIN_OFFSET_CELL           	 (1 << 2) 
-typedef struct cmSib3IntraFreqNeighCellInfo 
+#define CM_INTRA_FREQ_NEIGH_CELL_QRX_LEV_MIN_OFFSET_SUL_CELL     	 (1 << 1)
+#define CM_INTRA_FREQ_NEIGH_CELL_QUAL_MIN_OFFSET_CELL           	 (1 << 2)
+typedef struct cmSib3IntraFreqNeighCellInfo
 {
 	UINT32 					bitMask;
 	UINT16  				physCellId; 		    //0-1007
@@ -1816,7 +1828,7 @@ typedef struct cmSib3IntraFreqNeighCellInfo
 } CmSib3IntraFreqNeighCellInfo_t;
 
 
-typedef struct cmSib3IntraFreqNeighCellList 
+typedef struct cmSib3IntraFreqNeighCellList
 {
 	UINT32						   neighNum;
 	CmSib3IntraFreqNeighCellInfo_t intraFrequenceNeighCellList[MAXCELLINTRA];
@@ -1824,7 +1836,7 @@ typedef struct cmSib3IntraFreqNeighCellList
 } CmSib3IntraFreqNeighCellList_t;
 
 
-typedef enum cmSib3Range 
+typedef enum cmSib3Range
 {
 		rangeN4 	 = 0,
 		rangeN8 	 = 1,
@@ -1845,15 +1857,15 @@ typedef enum cmSib3Range
 }CmSib3Range_e;
 
 #define CM_SIB3_PCI_RANGE             (1 << 0)
-typedef struct cmSib3PciRange 
+typedef struct cmSib3PciRange
 {
 	UINT32		   bitMask;
 	UINT16         physCellId; //0-1007
-	CmSib3Range_e  range; 
+	CmSib3Range_e  range;
 } CmSib3PciRange_t;
 
 
-typedef struct cmSib3IntraFreqBlackCellList 
+typedef struct cmSib3IntraFreqBlackCellList
 {
 	UINT32			 blackNum;
 	CmSib3PciRange_t intraFrequenceBlackCellList[MAXCELLBLACK];
@@ -1862,7 +1874,7 @@ typedef struct cmSib3IntraFreqBlackCellList
 
 #define CM_SIB3_INTRA_FREQ_NEIGH_CELL_LIST               (1 << 0)
 #define CM_SIB3_INTRA_FREQ_BLACK_CELL_LIST               (1 << 1)
-typedef struct sib3 
+typedef struct sib3
 {
 	UINT16							bitMask;
 	CmSib3IntraFreqNeighCellList_t  intraFreqNeighCell;
@@ -1870,11 +1882,11 @@ typedef struct sib3
 }Sib3_t;
 
 /**********************     SystemInfo_t    ************************/
-typedef struct systemInfo 
+typedef struct systemInfo
 {
 		Sib2_t	 siSib2;
 		Sib3_t	 siSib3;
-#if 0		
+#if 0
 		Sib4_t	 siSib4;
 		Sib5_t	 siSib5;
 		Sib6_t	 siSib6;
@@ -1885,7 +1897,7 @@ typedef struct systemInfo
 }SystemInfo_t;
 
 /**********************     SiConfig_t    ************************/
-typedef struct siConfig 
+typedef struct siConfig
 {
 	Mib_t			 mibCfg;
 	Sib1_t			 sib1Cfg;
@@ -1912,7 +1924,7 @@ typedef struct siConfig
 #endif
 } SiConfig_t;
 
-typedef struct ngapConfig 
+typedef struct ngapConfig
 {
 	UINT32				gNBId;							/* Global Ran Node ID of one gNB */
 	NgapRanName_t		ranNodeName;					/* name of one gNB */
@@ -1920,14 +1932,14 @@ typedef struct ngapConfig
 } NGAPConfig_t;
 /**********************     OamCuCpConfig_t    ************************/
 typedef struct
-{	
+{
     UINT64        gnbDuId;
     IpAddress_t   gnbDuIp;/* IP Address of DU */
-    UCHAR         gnbDuName[MAX_GNB_DU_NAME];   
+    UCHAR         gnbDuName[MAX_GNB_DU_NAME];
 
 }F1apDuInfo_t;
 
-typedef struct f1apConfig 
+typedef struct f1apConfig
 {
     UINT32       gNBId;
 
@@ -1940,7 +1952,7 @@ typedef struct f1apConfig
 
 /**
  * @struct Transmission BandWidth
-   This structure is the Transmission BandWidth of  Cell Configuration   
+   This structure is the Transmission BandWidth of  Cell Configuration
 */
 typedef struct transBandWidth
 {
@@ -1950,7 +1962,7 @@ typedef struct transBandWidth
 
 /**
  * @struct SULInfo
-   This structure is the sul Info of  Cell Configuration   
+   This structure is the sul Info of  Cell Configuration
 */
 typedef struct sulInfo
 {
@@ -1960,7 +1972,7 @@ typedef struct sulInfo
 
 /**
  * @struct FreqBand
-   This structure is the freq Band of  Cell Configuration   
+   This structure is the freq Band of  Cell Configuration
 */
 typedef struct freqBand
 {
@@ -1971,7 +1983,7 @@ typedef struct freqBand
 
 /**
  * @struct FreqInfo
-   This structure is the freq Info of  Cell Configuration   
+   This structure is the freq Info of  Cell Configuration
 */
 #define FreqInfoSulInfoChosen       0x01
 typedef struct freqInfo
@@ -1985,7 +1997,7 @@ typedef struct freqInfo
 
 /**
  * @struct FDDInfo
-   This structure is the FDD Mode Config Info of  Cell Configuration   
+   This structure is the FDD Mode Config Info of  Cell Configuration
 */
 typedef struct fddInfo
 {
@@ -1997,7 +2009,7 @@ typedef struct fddInfo
 
 /**
  * @struct TDDInfo
-   This structure is the TDD Mode Config Info of  Cell Configuration   
+   This structure is the TDD Mode Config Info of  Cell Configuration
 */
 typedef struct tddInfo
 {
@@ -2007,7 +2019,7 @@ typedef struct tddInfo
 
 /**
  * @struct oamActCellInfo
-   This structure is oam send this message  to Du act cell   
+   This structure is oam send this message  to Du act cell
 */
 typedef struct oamActCellInfo
 {
@@ -2017,7 +2029,7 @@ typedef struct oamActCellInfo
 
 /**
  * @struct oamActCellRsp
-   This structure is DU send reponse message  to OAM   
+   This structure is DU send reponse message  to OAM
 */
 typedef struct oamActCellRsp
 {
@@ -2030,7 +2042,7 @@ typedef struct oamActCellRsp
 
 /** 从原始消息中获取SOCKET msg */
 #define GNB_GET_SOCKET_MSG(src,dst)   VOS_MemCpy((CHAR*)dst,(CHAR*)src,sizeof(vos_sock_info_t))
-            
+
 /** 从原始消息中拷贝消息到dst中 */
 #define GNB_GET_DATA(src,dst,len)    if(len > sizeof(vos_sock_info_t)) \
                                      {  \
@@ -2041,21 +2053,21 @@ typedef struct oamActCellRsp
                                         printf("msg len invalid, len = %d \r\n",len);\
                                         VOS_ASSERT(0); \
                                         return VOS_ERROR;\
-                                     } 
-/*获取msgBuf中消息地址*/									 
+                                     }
+/*获取msgBuf中消息地址*/
 #define GNB_GET_MODULE_MSG_DATA_PTR(dataType,pData,buf)   do{ \
 																ULONG ulBufAddr = 0; \
 																VOS_MemCpy((CHAR*)&ulBufAddr,(CHAR*)buf,sizeof(ULONG));\
 																pData =(dataType*)(ULONG*)ulBufAddr; \
 															  }while(0)
-/*设置msgBuf中消息地址*/	 
+/*设置msgBuf中消息地址*/
 #define GNB_SET_MODULE_MSG_DATA_PTR(src,dst)   do{ \
 													  ULONG ulBufAddr = 0; \
 													  ulBufAddr= (ULONG)((ULONG*)src); \
 													  VOS_MemCpy(dst, &ulBufAddr, sizeof(ULONG)); \
 													}while(0)
 
-/*填充数据地址到msgBuf中*/ 
+/*填充数据地址到msgBuf中*/
 #define GNB_SET_MODULE_MSG(msg,pModuleMsg) do{ \
 												  CHAR*  bufPtr = NULL; \
 												  ULONG  ulBufAddr = 0; \
@@ -2075,7 +2087,7 @@ do {                            \
         ((uint32_t)((buf)[1]) << 8) |      \
         ((uint32_t)((buf)[2]) << 16)  |      \
         ((uint32_t)((buf)[3]) << 24);             \
-} while(0)		
+} while(0)
 
 #define INT32_TO_BUFFER(x, buf) \
 do {                            \
@@ -2099,7 +2111,7 @@ extern INT32 error_file(FILE *file_p);
 extern FILE *open_file(const char *path, const char *flag);
 extern INT32 close_file(FILE *file_p);
 extern INT32 read_file(void *buf, INT32 size, INT32 count, FILE *file_p);
-   
+
 extern VOID sctpMsgNotifyProc(vos_sock_info_t* opval,VOID* buffer);
 
 void gnbPrintRrcMsg(int direction, int msgType, UINT8 *buf, INT32 size);
@@ -2107,8 +2119,5 @@ void gnbPrintRrcMsg(int direction, int msgType, UINT8 *buf, INT32 size);
 #ifdef __cplusplus
 }
 #endif
-            
+
 #endif  /* _CU_COMMON_H_*/
-
-
-

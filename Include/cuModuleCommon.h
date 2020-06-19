@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 
 
 #ifndef __CUMODULECOMMONH__
@@ -53,7 +65,7 @@ typedef enum cuSecAlgo_
 /* gNB Identity */
 typedef UINT32  gNBId_t;
 
-typedef struct 
+typedef struct
 {
 	PlmnId_t	plmnId;
 	gNBId_t		gNBId;
@@ -133,19 +145,19 @@ typedef struct transLayerAddr
 	UINT8					bitStringSize;			/* bit string size in bytes */
 }TransLayerAddr_t;
 
-typedef struct secuResult 
+typedef struct secuResult
 {
     IPResult_e               integrityProtectionResult;
     CPResult_e               confidentialityProtectionResult;
 } SecuResult_t;
 
-typedef struct gtpTunnel 
+typedef struct gtpTunnel
 {
     TransLayerAddr_t                        transLayerAddr;
     GtpTeid_t                               gtpTeid;
 } GtpTunnel_t;
 
-typedef struct upTransLayerInfo 
+typedef struct upTransLayerInfo
 {
     GtpTunnel_t                             gtpTunnel;
 } UpTransLayerInfo_t;
@@ -158,9 +170,9 @@ typedef struct
 }SecuInd_t;
 
 #define PRIORITY_LEVEL_QOS_PRESENT                  (1 << 0)
-#define NON_DYNAMIC_AVERAGING_WINDOW_PRESENT        (1 << 1) 
-#define NON_DYNAMIC_MAX_DATA_BURST_VOLUME           (1 << 2) 
-typedef struct nonDynamic5QIDescr 
+#define NON_DYNAMIC_AVERAGING_WINDOW_PRESENT        (1 << 1)
+#define NON_DYNAMIC_MAX_DATA_BURST_VOLUME           (1 << 2)
+typedef struct nonDynamic5QIDescr
 {
 	UINT16									bitMask;
 	INT64									fiveQI;
@@ -174,12 +186,12 @@ typedef struct
 	INT64									perScalar;
 	INT64									perExponent;
 }PackErrorRate_t;
-	
+
 #define FIVEQI_PRESENT                              (1 << 0)
 #define DELAY_CRITICAL_PRESENT                      (1 << 1)
 #define DYNAMIC_AVERAGING_WINDOW_PRESENT            (1 << 2)
 #define DYNAMIC_MAX_DATA_BURST_VOLUME               (1 << 3)
-typedef struct dynamic5QIDescr 
+typedef struct dynamic5QIDescr
 {
 	UINT16									bitMask;
 	INT64									priorityLevelQos;

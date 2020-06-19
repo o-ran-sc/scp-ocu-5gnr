@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 
 #ifndef __UPCCONTEXT_H__
 #define __UPCCONTEXT_H__
@@ -53,7 +65,7 @@ typedef struct
 
 	/* QOS Info Begin */
 	QosFlowLevelQosPar_t        qosPara;
-	
+
 	UINT8						qosMapFlag;
 	QosFlowMapInd_e			qosFlowMapInd;
 	/* QOS Info End */
@@ -156,7 +168,7 @@ typedef struct
 
 	UINT8						dlAMBRFlag;
 	UINT64	 					sessDlAMBR;
-	
+
 	UINT8						DFIReqFlag;
     DFIRequest_t			    DFIInfoReq;
 	UINT8						DFIRspFlag;/* Only Mod Optional */
@@ -193,17 +205,17 @@ typedef struct
 	upcTempSessInfo_t			*pTempSessSetupList;
 	upcTempSessInfo_t			*pTempSessModList;
 
-	
+
 	/* Content	--Begin */
 	UINT8						secuInfoFlag;/* Only Mod Optional */
 	SecuInfo_t					secuInfo;
 
 	UINT8						dlAmbrFlag;/* Only Mod Optional */
 	UINT64						ueDlAMBR;
-	
+
 	PlmnId_t					servPlmnId;
-	ActNotiLevel_e				actNotiLevel;	
-	
+	ActNotiLevel_e				actNotiLevel;
+
 	UINT8						dlIPDRFlag;
 	UINT64						ueDlMaxIPDR;
 
@@ -229,7 +241,7 @@ typedef struct upDrbCb
 {
 	UINT8						useFlag;
     INT64	                    drbId;
-	
+
     SdapCfg_t					sdapConfig;
 	PDCPConfiguration_t	        pdcpConfig;
 	UPParametersList_t			f1UlUpPara;
@@ -264,10 +276,10 @@ typedef struct upSessCb
 
     DFIRequest_t      			dataForInfoReq;
 
- 
+
 
 	INT64						networkInstance;
-	
+
 	UINT8                       drbNum;
     UpDrbCb_t                   *pDrbCb[UPC_MAX_DRB_NUM];
 
@@ -293,9 +305,9 @@ typedef struct upUeCb
     UINT64	                    ueDlAMBR;
 	UINT64						ueDlMaxIPDR;
     PlmnId_t                    plmnId;
-	
+
     INT64			            inActTimer;
-		
+
 	UINT16						sessNum;/* current session num */
     UpSessCb_t                  *pSessCb[UPC_MAX_SESSION_NUM];
 	struct upInstance           *pUpInstance;
@@ -313,7 +325,7 @@ typedef struct upInstance
     IpAddress_t                 upAddr[UPC_MAX_IP_NUM];
 	INT8						cpAddrNum;
 	IpAddress_t					cpAddr[UPC_MAX_IP_NUM];
- 
+
     INT64				        upCapa;
     UINT32						bPlmnNum;
 	E1apUpbPlmnCfgInfo_t		bPlmnCfgInfo[e1ap_maxnoofSPLMNs];
@@ -335,5 +347,3 @@ UpDrbCb_t *upcGetDrbCb(UpSessCb_t *pSessCb, UINT8 drbId);
 #endif
 
 #endif
-
-

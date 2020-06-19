@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 
 
 #ifndef __CUUPPROTOCOLPARA_H__
@@ -18,7 +30,7 @@
 #define		CUUP_NAME_MAX_LEN		32
 
 typedef struct CuupBasicInfoCfg_s
-{	
+{
 	UINT64	gnbCuupId;
 	UCHAR	gnbCuupName[CUUP_NAME_MAX_LEN];
 	UINT8	cnSupportType;//ENUMERATED (EPC,5GC,both)
@@ -37,7 +49,7 @@ typedef struct CuupBasicInfoCfg_s
 
 typedef struct 	CuupIpAddrList_s
 {
-	UINT8	ipType;	
+	UINT8	ipType;
 	UINT32	port;
 	char	ipv4Address[MAX_CUUP_IPV4_ADDR_LEN];
 	char	ipv6Address[MAX_CUUP_IPV6_ADDR_LEN];
@@ -83,7 +95,7 @@ typedef struct CuupPlmnIdInfo_s
 #define MAX_NROF_NG_RAN_QOS_PARAMETER	1//256协议规定
 typedef struct qosSupportInfo_s
 {
-	UINT8	plmnIdx;				
+	UINT8	plmnIdx;
 	UINT8	fiveQI;//取值范围:0~255
 	UINT8	qoSPrirotyLevel_presence;//qoSPrirotyLevel配置标志位
 	UINT8	qoSPrirotyLevel;//取值范围:0~127
@@ -110,7 +122,7 @@ typedef struct ngranQosSupportList_s
 typedef struct SliceSupportInfo_s
 {
 	UINT8	PlmnIdx;
-	UINT8	SST;	//为了支持网络切片,与SD字段可以组成S-NSSAI	
+	UINT8	SST;	//为了支持网络切片,与SD字段可以组成S-NSSAI
 	UINT8	SD_presence;//SD配置标志位
 	UINT32	SD:24;
 }sliceSupportInfo_t;
@@ -143,4 +155,3 @@ typedef struct cellIdSupportList_s
 #pragma pack()
 
 #endif
-

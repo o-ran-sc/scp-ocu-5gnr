@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 #include <sys/time.h>
 #include "vos_types.h"
 #include "vos_linklist.h"
@@ -44,7 +56,7 @@ INT32 pdcpuPackPduHead(PdcpRlcMode_e rlc_mode,PdcpSnSize_e snSize, UINT32 sn, Ms
 	{
 		pduHeadLen = PDCP_SN_18_HEAD_LEN;
 	}else
-	{	
+	{
 		pdcpuLog(LOG_ERR,"[PDCPU] sn size is wrong!\n");
 		return VOS_ERROR;
 	}
@@ -63,7 +75,7 @@ INT32 pdcpuPackPduHead(PdcpRlcMode_e rlc_mode,PdcpSnSize_e snSize, UINT32 sn, Ms
 		packBits(&bit, 1, 1);
 		skipBits(&bit, 3, BIT_PACKED);
 		packBits(&bit, 4, ((sn & 0xf00)>>8));
-		packBits(&bit, 8, sn & 0x0ff);		
+		packBits(&bit, 8, sn & 0x0ff);
 	}else if(snSize == LEN18BITS)
 	{
 		if(sn >= MAX_PDCP_SN_18)
@@ -92,13 +104,13 @@ INT32 pdcpuPackPduHead(PdcpRlcMode_e rlc_mode,PdcpSnSize_e snSize, UINT32 sn, Ms
 		pdcpuLog(LOG_ERR,"[PDCPU] msgbHeadPush failed!\n");
 		return VOS_ERROR;
 	}
-	
+
 	if(NULL != pPduHead)
-	{ 
+	{
 		VOS_Free(pPduHead);
 		pPduHead= NULL;
 	}
-	
+
 	return pduHeadLen;
 }
 
@@ -114,15 +126,15 @@ INT32 pdcpuPackPduHead(PdcpRlcMode_e rlc_mode,PdcpSnSize_e snSize, UINT32 sn, Ms
  *		-1:failed
  *******************************************************************************/
 INT32 pdcpuDlDataProc(UINT64 ueE1apId, UINT8 drbId, MsgbBuff_t *pMsgBuff, UINT8 sdapPduType)
-{	
+{
 	UINT32 sn 		  = 0;
 	INT8   pduHeadLen = 0;
 
 	PdcpSnSize_e		snSize;
 	PdcpRlcMode_e 		rlcMode;
 	PdcpDrbEntity_t 	*pPdcpDrbEntity = NULL;
-	
-	UINT16 ueIdx;	
+
+	UINT16 ueIdx;
 	if(VOS_ERROR == cuupGetUeIdx(ueE1apId, &ueIdx, &gPdcpuUeIdxTable))
 	{
 		pdcpuLog(LOG_ERR,"[PDCPU] get ueIdx failed,ueE1apId:%d\n",ueE1apId);
@@ -130,15 +142,15 @@ INT32 pdcpuDlDataProc(UINT64 ueE1apId, UINT8 drbId, MsgbBuff_t *pMsgBuff, UINT8 
 	}
 	pdcpuCheckUeIdx(ueIdx);
 	pdcpuCheckDrbId(drbId);
-	
+
 	pdcpuGetEntity(ueIdx, drbId, pPdcpDrbEntity);
 	pdcpuNullCheck(pPdcpDrbEntity);
 	rlcMode = pPdcpDrbEntity->rlcMode;
-	
+
 	//1.check data
 	pdcpuNullCheck(pMsgBuff);
-	
-	//2.assign the sn 
+
+	//2.assign the sn
 	UINT32 count = pPdcpDrbEntity->stateVar.txNext++;
 
 	// check out count wrapping around whether or not
@@ -147,7 +159,7 @@ INT32 pdcpuDlDataProc(UINT64 ueE1apId, UINT8 drbId, MsgbBuff_t *pMsgBuff, UINT8 
 		pdcpuLog(LOG_ERR,"[PDCPU] count value is going to wrap around!\n");
 		return VOS_ERROR;
 	}
-	
+
 	snSize = pPdcpDrbEntity->pdcpSnSizeDl;
 	if(snSize == LEN12BITS)
 	{
@@ -168,7 +180,7 @@ INT32 pdcpuDlDataProc(UINT64 ueE1apId, UINT8 drbId, MsgbBuff_t *pMsgBuff, UINT8 
 		pdcpuLog(LOG_ERR,"[PDCPU] pack pdcp pdu head failed!\n");
 		return VOS_ERROR;
 	}
-	
+
 	//8. 否则：cuf1u将数据发送成功后，释放
 	if(VOS_OK == cuf1uDlDataProc(ueE1apId, drbId, pMsgBuff, NULL))
 	{
@@ -181,6 +193,5 @@ INT32 pdcpuDlDataProc(UINT64 ueE1apId, UINT8 drbId, MsgbBuff_t *pMsgBuff, UINT8 
 		pdcpuLog(LOG_ERR,"[PDCPU] cuf1u send failed\n");
 		return VOS_ERROR;
 	}
-	
-}
 
+}

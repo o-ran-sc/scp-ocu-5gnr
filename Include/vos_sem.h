@@ -1,9 +1,22 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+/******************************************************************************
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 
 
 
@@ -39,54 +52,54 @@ typedef enum{
 }VOS_sem_option_t;
 
 
-/** 
+/**
  * 创建Bianary类型的信号量，linux中 与Count类型 一致
  * @param[in]   lOption             信号量选项，linux 中无效，使用 VOS_SEM_Q_FIFO
  * @param[in]   enInitialState      初始化状态，VOS_SEM_B_STATE 类型的枚举值
  * @return      返回SEM_ID，失败则返回 0
- */ 
+ */
 #define VOS_SemBCreate(lOption, enInitialState)     __VOS_SemBCreate(lOption, enInitialState, __FUNCTION__, __LINE__)
 
 
-/** 
+/**
  * 创建Count类型的信号量
  * @param[in]   lOption             信号量选项，linux 中无效，使用 VOS_SEM_Q_FIFO
  * @param[in]   enInitialState      初始化状态，VOS_SEM_B_STATE 类型的枚举值
  * @return      返回SEM_ID，失败则返回 0
- */ 
+ */
 #define VOS_SemCCreate(lOption, enInitialState)     __VOS_SemCCreate(lOption, enInitialState, __FUNCTION__, __LINE__)
 
 
-/** 
+/**
  * 创建互斥锁
  * @param[in]   lOption             信号量选项，linux 中无效，使用 VOS_SEM_Q_FIFO
  * @return      返回SEM_ID，失败则返回 0
- */ 
+ */
 #define VOS_SemMCreate(lOption)                            __VOS_SemMCreate(lOption, __FUNCTION__, __LINE__)
 
 
-/** 
+/**
  * 获取信号量
  * @param[in]   semID      信号量ID
  * @param[in]   lMsec      超时等待的时间，单位毫秒，也可以为VOS_WAIT_FOREVER或VOS_NO_WAIT
  * @return      VOS_OK - 成功，其他 - 失败/超时
- */ 
+ */
 LONG VOS_SemTake(ULONG semID, LONG lMsec);
 
 
-/** 
+/**
  * 释放信号量
  * @param[in]   semID      信号量ID
  * @return      VOS_OK - 成功，其他 - 失败
- */ 
+ */
 LONG VOS_SemGive(ULONG semID);
 
 
-/** 
+/**
  * 删除信号量
  * @param[in]   semID      信号量ID
  * @return      VOS_OK - 成功，其他 - 失败
- */ 
+ */
 LONG VOS_SemDelete(ULONG semID);
 
 
@@ -97,7 +110,7 @@ LONG VOS_SemDelete(ULONG semID);
 /* ###### 下面的函数不要直接调用，使用上面提供的宏 ###### */
 
 
-/** 
+/**
  * 不要直接调用该API，通过宏 VOS_SemBCreate 使用
  * 创建Bianary类型的信号量，linux中 与Count类型 一致
  * @param[in]   lOption             信号量选项，linux 中无效，使用 VOS_SEM_Q_FIFO
@@ -105,11 +118,11 @@ LONG VOS_SemDelete(ULONG semID);
  * @param[in]   pFunc               调用该API的文件名
  * @param[in]   iLine               调用该API的行号
  * @return      返回SEM_ID，失败则返回 0
- */ 
+ */
 ULONG __VOS_SemBCreate(LONG lOption, VOS_SEM_B_STATE enInitialState,const CHAR *pFunc, INT iLine);
 
 
-/** 
+/**
  * 不要直接调用该API，通过宏 VOS_SemCCreate 使用
  * 创建Count类型的信号量，linux中 与Count类型 一致
  * @param[in]   lOption             信号量选项，linux 中无效，使用 VOS_SEM_Q_FIFO
@@ -117,18 +130,18 @@ ULONG __VOS_SemBCreate(LONG lOption, VOS_SEM_B_STATE enInitialState,const CHAR *
  * @param[in]   pFunc               调用该API的文件名
  * @param[in]   iLine               调用该API的行号
  * @return      返回SEM_ID，失败则返回 0
- */ 
+ */
 ULONG  __VOS_SemCCreate(LONG lOption, LONG lInitialCount,const CHAR *pFunc, INT iLine);
 
 
-/** 
+/**
  * 不要直接调用该API，通过宏 VOS_SemMCreate 使用
  * 创建互斥锁
  * @param[in]   lOption             信号量选项，linux 中无效，使用 VOS_SEM_Q_FIFO
  * @param[in]   pFunc               调用该API的文件名
  * @param[in]   iLine               调用该API的行号
  * @return      返回SEM_ID，失败则返回 0
- */ 
+ */
 ULONG  __VOS_SemMCreate(LONG lOption,const CHAR *pFunc, INT iLine);
 
 #ifdef __cplusplus

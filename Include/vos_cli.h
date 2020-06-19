@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 
 
 #ifndef __VOS_CLI_H__
@@ -50,9 +62,9 @@ extern "C"
 /** VOS 预定义的节点 */
 enum node_type
 {
-    VOS_CLI_VIEW_NODE,              ///<  View node. Default mode of vty interface. 
-    VOS_CLI_CONFIG_NODE,            ///<  Config node. Default mode of config file. 
-    VOS_CLI_DEBUG_HIDDEN_NODE,      ///<  Debug hidden node. 
+    VOS_CLI_VIEW_NODE,              ///<  View node. Default mode of vty interface.
+    VOS_CLI_CONFIG_NODE,            ///<  Config node. Default mode of config file.
+    VOS_CLI_DEBUG_HIDDEN_NODE,      ///<  Debug hidden node.
     VOS_CLI_CONFIRM_ACTION_NODE,    ///<  Confirm action.
     VOS_CLI_RESV_MAX_NODE           ///<  Vos max reserved node ID
 };
@@ -166,21 +178,21 @@ struct vty
 
     /* vty 接入类型console，telnet， telnet IPv6 */
     int conn_type;
-    
+
     /* vty 接入用户名 */
     char *user_name;
 
     /* vty 会话任务 */
     struct cl_lib_thread_master *sub_thread_master;
-    
+
     /* vty 会话任务handle */
     VOS_HANDLE sub_task_id;
 
     /* vty 调试标志位 */
-    unsigned short debug_monitor;  
+    unsigned short debug_monitor;
 
     /************************************
-    frozen vty in and(or) out 
+    frozen vty in and(or) out
     used for if a command can't return immediately
     then call frozen to freeze vty's in and(or) out
     call unfrozen when finished.
@@ -199,9 +211,9 @@ struct vty
 
 
 /** cl_vector 动态数组指针 */
-struct _cl_vector 
+struct _cl_vector
 {
-    unsigned int max;       ///< 当前最大索引加1 
+    unsigned int max;       ///< 当前最大索引加1
     unsigned int alloced;   ///< 数组大小 */
     void **index;           ///< 指针数组
 };
@@ -215,9 +227,9 @@ struct cmd_element
     int (*func) (struct cmd_element *, struct vty *, int, char **); ///< 命令回调函数
     char *doc;			 ///< 命令说明，对命令字符串中的每个单词进行说明
     int msg_flag;        ///< 命令类型标识，当前只有 DEFUN_FLAG 类型
-    cl_vector strvec;	 ///< 将 string和doc 拆分后放入该数组中 ,存放struct desc 
+    cl_vector strvec;	 ///< 将 string和doc 拆分后放入该数组中 ,存放struct desc
     int cmdsize;		 ///< string 中单词个数
-    cl_vector subconfig; ///< 将 string中可以重复的单词的重复位置和重复次数等 
+    cl_vector subconfig; ///< 将 string中可以重复的单词的重复位置和重复次数等
 };
 
 
@@ -232,7 +244,7 @@ struct cmd_node
 
 #define DEFUN_FLAG     0
 
-/** 
+/**
  * 命令行定义宏
  * @param[in]   funcname   回调函数的函数名
  * @param[in]   cmdname    命令变量的变量名
@@ -246,7 +258,7 @@ struct cmd_node
 	int funcname  (struct cmd_element *self, struct vty *vty, int argc, char **argv)
 
 
-/** 
+/**
  * 命令行回调函数中的标准输出函数,
  * 注意 LONG 输出时，要用%ld,或%lx
  * @param[in]   vty     vty
@@ -256,7 +268,7 @@ struct cmd_node
  */
 INT vty_out ( struct vty * vty, const CHAR * format, ... );
 
-/** 
+/**
  * 创建并安装命令节点
  * @param[in]   prompt         节点提示符，用于命令行提示符的显示
  * @return      成功返回 一个新节点的指针,失败返回NULL
@@ -264,7 +276,7 @@ INT vty_out ( struct vty * vty, const CHAR * format, ... );
 struct cmd_node *VOS_cli_create_node(char prompt[VTY_CMD_PROMPT_MAX]);
 
 
-/** 
+/**
  * 把命令安装到指定节点
  * @param[in]   node_id     节点ID
  * @param[in]   cmd         命令
@@ -273,7 +285,7 @@ struct cmd_node *VOS_cli_create_node(char prompt[VTY_CMD_PROMPT_MAX]);
 VOID VOS_cli_install_element( enum node_type node_id, struct cmd_element * cmd );
 
 
-/** 
+/**
  * 在进入节点函数中调用，用于进入节点
  * @param[in]   vty       vty
  * @param[in]   newnode   要进入的节点ID
@@ -282,7 +294,7 @@ VOID VOS_cli_install_element( enum node_type node_id, struct cmd_element * cmd )
 LONG  vty_enter_node(struct vty *vty,enum node_type newnode);
 
 
-/** 
+/**
  * 在进入节点函数中调用，用于自定义要进入节点的命令行提示符，
  * 调用vty_enter_node后调用
  * @param[in]   vty       vty
@@ -315,13 +327,13 @@ enum match_type
     mac_match,
     slot_port_match,
     slot_subport_match,
-    
+
     time_match,
     range_match,
 
     /*其余的匹配类型在此之前*/
     register_match,
-    
+
     exact_match
 };
 
@@ -334,31 +346,31 @@ typedef struct _cmd_notify_register_tag
     CHAR IsCapital ;                             ///<  是否包含大写字母 0 － 全小写； 1 － 含有大写字母
 }CMD_NOTIFY_REFISTER_S;
 
-/** 
+/**
  * 添加自定义命令行参数解析函数
  * @param[in]   pNotifyRegister   自定义解析函数信息
  * @return      成功返回 register_match,失败返回no_match
  */
 enum match_type cmd_rugular_register(CMD_NOTIFY_REFISTER_S * pNotifyRegister);
 
-/** 
+/**
  * 配置/获取 vty超时时间
  * @param[in ]   vty         vty
  * @param[in ]   newTime     新的超时时间，大于等于0时有效，0表示不会超时
  * @param[out]   oldTime     如果不为NULL 返回配置前的超时时间
  * @return      成功返回 VOS_OK，失败则返回其他
- */ 
+ */
 LONG vty_timeout_config ( struct vty * vty, LONG newTime, LONG *oldTime);
 
 
-/** 
- * 要使用vty_very_big_out 函数必须先调用此初始化函数 
+/**
+ * 要使用vty_very_big_out 函数必须先调用此初始化函数
  * @param[in ]   vty         vty
  */
 void vty_very_big_out_init ( struct vty *vty );
 
-/** 
- * 用于长字符串打印 
+/**
+ * 用于长字符串打印
  * @param[in]   vty     vty
  * @param[in]   format  格式字符串
  * @param[in]   ...     要输出的变量

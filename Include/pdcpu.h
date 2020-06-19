@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 
 #ifndef PDCP_U_H
 #define PDCP_U_H
@@ -94,7 +106,7 @@ typedef enum
 }PdcpTimer_e;
 
 
-typedef struct 
+typedef struct
 {
 	UINT32 			count;
 	UINT32			f1uSn;		/* Not used in receiving buffer */
@@ -105,8 +117,8 @@ typedef struct
 
 
 typedef struct
-{	
-    UINT16 				notUsed;	
+{
+    UINT16 				notUsed;
 	RohcParaPR_e		rohcType;
     union
     {
@@ -121,34 +133,34 @@ typedef struct
 	UINT16					pduSessionId;
 	UINT64					ueE1apId;
 	UINT16 					ueIdx;
-	UINT32 					rlcState;		
-	PdcpRlcMode_e 			rlcMode;	
+	UINT32 					rlcState;
+	PdcpRlcMode_e 			rlcMode;
 	UINT8					sdapUlHeadLen;
 	UINT8					sdapDlHeadLen;
-    PdcpSnSize_e 			pdcpSnSizeUl;	
+    PdcpSnSize_e 			pdcpSnSizeUl;
     PdcpSnSize_e 			pdcpSnSizeDl;
-    HeaderCompression_t		headerCompress;	
-	
+    HeaderCompression_t		headerCompress;
+
 	UINT8 					tDiscardActive;			/* TRUE/FALSE */
 	UINT8					tDiscardRun;			/* TRUE/FALSE */
-	UINT16		 			tDiscard;				/* ms */	
-	ModuleMsg_t 			*pDiscardMsg;	
+	UINT16		 			tDiscard;				/* ms */
+	ModuleMsg_t 			*pDiscardMsg;
 
 	UINT8 					tReorderActive;			/* TRUE/FALSE */
 	UINT8					tReorderRun;			/* TRUE/FALSE */
-	UINT16			 		tReorder;				/* ms */	
+	UINT16			 		tReorder;				/* ms */
 	ModuleMsg_t 			*pReorderMsg;
 	LONG					tReorderId;
-	
-    MoreThanOneRLCContext 	moreThanOneRLCContext;	
+
+    MoreThanOneRLCContext 	moreThanOneRLCContext;
     UINT8 					integrityProtection;	/* TRUR: used, FALSE: not used */
-    UINT8 					outOfOrderDelivery; 
+    UINT8 					outOfOrderDelivery;
 	UINT8 					ciperingEnabled;		/* TRUR: used, FALSE: not used */
 	PdcpStateVar_t 			stateVar;
-	
-	plist					pTxPduList;				/* transmitting buffer */	
+
+	plist					pTxPduList;				/* transmitting buffer */
 	ULONG 					txListLock;				/* txListLock */
-	
+
 	plist					pRxSduList;				/* receiving buffer	   */
 	ULONG 					rxListLock;				/* rxListLock */
 }PdcpDrbEntity_t;
@@ -174,7 +186,7 @@ typedef struct
 	CuupBearerStatus_e 	  ueStatus;
 	PdcpuSecInfo_t   	 *secInfo;
 	PdcpuSecEnableInfo_t *secEnableInfo[CUUP_MAX_SESSION_NUM];
-	PdcpDrbEntity_t	  	 *pdcpDrbEntity[MAX_DRB_NUM];	
+	PdcpDrbEntity_t	  	 *pdcpDrbEntity[MAX_DRB_NUM];
 }PdcpuUeInfo_t;
 
 typedef struct

@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 
 #ifndef _VOS_LIB_H_
 #define _VOS_LIB_H_
@@ -23,78 +35,78 @@
 #define FILE_PATH_MAX 4096
 
 
-/** 
+/**
  * VOS 平台初始化
  * @param[in]   appPath      APP文件路径
  * @param[in]   cfgPath      vos config 文件路径
  * @param[in]   mods         定义已存在模块的数组
  * @param[in]   num          mods数组大小
  * @return      成功时返回申请内存的地址，失败则返回NULL。
- */ 
+ */
 LONG VOS_Init(const CHAR *appPath,const CHAR *cfgPath,vos_module_t * mods,INT num);
 
 
-/** 
+/**
  * 分配内存
  * @param[in]   ulSize      申请内存的大小
  * @param[in]   ulModuleId  申请模块的模块ID
  * @return      成功时返回申请内存的地址，失败则返回NULL。
- */ 
+ */
 #define VOS_Malloc(ulSize,ulModuleId) VOS_MallocWithDebug(ulSize,ulModuleId,(UCHAR *)__FILE__,__LINE__)
 
 
-/** 
+/**
  * 释放内存
  * @param[in]   ptr      释放内存的指针
- */ 
+ */
 #define VOS_Free(ptr) VOS_Free_Debug(ptr,(UCHAR *)__FILE__,__LINE__)
 
 
-/** 
+/**
  * 根据bExp判断是否打印调用栈
  * @param[in]   exp        当bExp为假时打印调用栈
- */ 
+ */
 #define VOS_ASSERT(exp)   VOS_ASSERT_X( (LONG)(exp), __FILE__, __LINE__ , 0)
 
 
-/** 
- * 格式化输出到默认输出 
+/**
+ * 格式化输出到默认输出
  * 注意 LONG 输出时，要用%ld,或%lx
  * @param[in]   format    格式字符串
  * @param[in]   ...       要输出的变量
  * @return      返回输出的字节数
- */ 
+ */
 ULONG VOS_Printf(const CHAR *format ,...);
 
 
-/** 
+/**
  * 格式化输出到指定字符串中
  * @param[in]   buf       输出位置
  * @param[in]   fmt       格式字符串
  * @param[in]   ...       要输出的变量
  * @return      返回输出的字节数
- */ 
+ */
 ULONG VOS_Sprintf(CHAR *buf ,CHAR *fmt, ...);
 
 
-/** 
+/**
  * 格式化输出到指定字符串中
  * @param[in]   buf       输出位置
  * @param[in]   size      buf的大小
  * @param[in]   fmt       格式字符串
  * @param[in]   ...       要输出的变量
  * @return      返回输出的字节数
- */ 
+ */
 ULONG VOS_Snprintf(CHAR *buf, ULONG size, CHAR *fmt, ...);
 
 
-/** 
+/**
  * 读取格式化的字符串中的数据
  * @param[in]   buf       要读取的字符串
  * @param[in]   fmt       读取格式
  * @param[in]   ...       存储数据的指针
  * @return      返回成功读取的字段个数
- */ 
+ */
 ULONG VOS_Sscanf(const CHAR * buf, const CHAR * fmt,...);
 
 
@@ -108,33 +120,33 @@ ULONG VOS_Vsnprintf(CHAR * buf, ULONG size, const CHAR * fmt, va_list args);
 /** 同 vsprintf */
 ULONG VOS_Vsprintf(CHAR * buf, const CHAR * fmt, va_list args);
 
-/** 
+/**
  * 判断文件是否存在
  * @param[in]   path      文件路径
  * @return      path存在返回TURE，不存在则返回FALSE
- */ 
+ */
 BOOL VOS_file_exist(const CHAR *path);
 
 #define NUM_LIST_MAX 4096
 
-/** 
+/**
  * 将数值list字符串(1-6,8,13)转换为，数组
  * @param[in ]   list      数值字符串
  * @param[out]   numList   解析后的数值数组
  * @return      成功解析的个数
- */ 
+ */
 LONG parseNumList(const CHAR * list,ULONG numList[NUM_LIST_MAX]);
 
 
-/** 
+/**
  * 将数值list字符串(1-6,8,13)转换为一个ULONG bitmap
  * @param[in ]   list      数值字符串
  * @param[out]   map       解析后的bitmap
  * @return      成功返回VOS_OK，失败返回其他
- */ 
+ */
 LONG parseNumList2BitMap(const CHAR * list,ULONG *map);
 
-/** 
+/**
  * 延时
  * @param[in ]   seconds      延时的秒数
  */
@@ -142,37 +154,37 @@ VOID VOS_Sleep(LONG seconds);
 
 typedef VOID( *VOS_SIGNAL_FUNC ) ( int signal);
 
-/** 
+/**
  * vos信号处理回调函数注册
  * @param[in ]   sig      			信号
  * @param[in ]   sig_handler      	回调函数
  * @return      成功返回VOS_OK，失败返回VOS_ERROR
- */ 
+ */
 LONG Vos_Signal(int sig, VOS_SIGNAL_FUNC sig_handler);
 
-/** 
+/**
  * product信号处理回调函数注册
  * @param[in ]   sig      			信号
  * @param[in ]   status      		是否退出
  * @param[in ]   sig_handler      	回调函数
  * @return      成功返回VOS_OK，失败返回VOS_ERROR
- */ 
+ */
 LONG Product_Signal(int sig,	 ULONG status, VOS_SIGNAL_FUNC sig_handler);
 
-/** 
+/**
  * product最后处理的信号回调函数注册
  * @param[in ]   sig      			信号
  * @param[in ]   status      		是否退出
  * @param[in ]   sig_handler      	回调函数
  * @return      成功返回VOS_OK，失败返回VOS_ERROR
- */ 
+ */
 LONG Product_Signal_Last(int sig,	 ULONG status, VOS_SIGNAL_FUNC sig_handler);
 
-/** 
+/**
  * 信号处理模块初始化
  * @param[in ]   signal      		信号
  * @return      成功返回VOS_OK，失败返回VOS_ERROR
- */ 
+ */
 LONG Vos_SignalInit();
 
 //信号最小值
@@ -195,32 +207,32 @@ typedef enum VOS_MOD_EVENT_TYPE_S
 
 /*=========================================================================================================================*/
 /* ###### 下面的函数不要直接调用，使用上面提供的宏 ###### */
-/** 
+/**
  * 分配内存,不要直接调用该API，通过宏 VOS_Malloc 调用
  * @param[in]   size      申请内存的大小
  * @param[in]   moduleId  申请内存的模块ID
  * @param[in]   file      申请内存处的文件名
  * @param[in]   line      申请内存处的行号
  * @return      成功时返回申请内存的地址，失败则返回NULL。
- */ 
+ */
 void* VOS_MallocWithDebug(unsigned long size, unsigned long moduleId, unsigned char *file, unsigned long line);
 
-/** 
+/**
  * 释放内存,不要直接调用该API，通过宏 VOS_Free 调用
  * @param[in]   ptr       释放内存的地址
  * @param[in]   file      释放内存处的文件名
  * @param[in]   line      释放内存处的行号
  * @return
- */ 
+ */
 void VOS_Free_Debug(const void *ptr,  UCHAR *file, ULONG line);
 
-/** 
+/**
  * 打印断言，根据bExp判断是否打印调用栈，不要直接调用该API，通过宏 VOS_ASSERT 调用
  * @param[in]   bExp        当bExp为假时打印调用栈
  * @param[in]   szFileName  打印处的文件名
  * @param[in]   iLine       打印处的行号
  * @param[in]   bOutConsole 输出fd
- */ 
+ */
 VOID VOS_ASSERT_X( BOOL bExp, CHAR *szFileName, INT iLine , INT bOutConsole);
 
 /******计算某个函数运行时间******/

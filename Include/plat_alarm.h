@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 
 
 #ifndef __PLAT_ALARM_H__
@@ -69,7 +81,7 @@ typedef struct {
 	UCHAR	reserved[2];            ///< 保留字段
 } __attribute__((packed)) alm_status_t;
 
-/** 
+/**
  * 通用告警上报API，使用变长参数，变长参数只支持ULONG  和char * 字符串。
  * 设备索引和上报参数依次排列，不能乱序。
  * @param[in]   alarmType    告警类型
@@ -79,27 +91,27 @@ typedef struct {
 LONG alarm_commonReport( LONG alarmType, LONG alarmId, ... );
 
 
-/** 
+/**
  * 根据 alarmType 和 alarmId 获取告警 TrapOid。
  * @param[in ]   alarmType    告警类型
  * @param[in ]   alarmId      告警ID
  * @param[out]   pTrapOid     存放oid 的数组
  * @param[out]   pOidLen      oid长度
- * @return      成功返回 VOS_OK ，失败返回 其他 
+ * @return      成功返回 VOS_OK ，失败返回 其他
  */
 LONG alarm_TrapOid_get( ULONG alarmType, ULONG alarmId, ULONG pTrapOid[TRAP_OID_LEN], LONG *pOidLen );
 
 
-/** 
+/**
  * 根据 alarmType 和 alarmId 获取告警 level。
  * @param[in]   alarmType    告警类型
  * @param[in]   alarmId      告警ID
- * @return      成功返回告警 level，失败返回 0 
+ * @return      成功返回告警 level，失败返回 0
  */
 ULONG alarm_Level_get( ULONG alarmType, ULONG alarmId );
 
 
-/** 
+/**
  * 根据 alarmType 和 alarmId 获取告警 trap使能。
  * @param[in]   alarmType    告警类型
  * @param[in]   alarmId      告警ID
@@ -108,7 +120,7 @@ ULONG alarm_Level_get( ULONG alarmType, ULONG alarmId );
 ULONG alarm_TrapEnable_get( ULONG alarmType, ULONG alarmId );
 
 
-/** 
+/**
  * 根据 alarmType 和 alarmId 获取告警 index个数。
  * @param[in]   alarmType    告警类型
  * @param[in]   alarmId      告警ID
@@ -117,7 +129,7 @@ ULONG alarm_TrapEnable_get( ULONG alarmType, ULONG alarmId );
 ULONG alarm_IndexNum_get( ULONG alarmType, ULONG alarmId );
 
 
-/** 
+/**
  * 根据 alarmType 和 alarmId 获取告警 参数个数。
  * @param[in]   alarmType    告警类型
  * @param[in]   alarmId      告警ID
@@ -126,106 +138,106 @@ ULONG alarm_IndexNum_get( ULONG alarmType, ULONG alarmId );
 ULONG alarm_ParaNum_get( ULONG alarmType, ULONG alarmId );
 
 
-/** 
+/**
  * 根据 alarmType 和 alarmId 获取告警 index打印格式。
  * @param[in ]   alarmType    告警类型
  * @param[in ]   alarmId      告警ID
  * @param[out]   fmt          index打印格式
- * @return      成功返回 VOS_OK ，失败返回 其他 
+ * @return      成功返回 VOS_OK ，失败返回 其他
  */
 LONG alarm_IndexFormat_get( ULONG alarmType, ULONG alarmId ,CHAR *fmt);
 
 
-/** 
+/**
  * 根据 alarmType 和 alarmId 获取告警 参数打印格式。
  * @param[in ]   alarmType    告警类型
  * @param[in ]   alarmId      告警ID
  * @param[out]   fmt          参数打印格式
- * @return      成功返回 VOS_OK ，失败返回 其他 
+ * @return      成功返回 VOS_OK ，失败返回 其他
  */
 LONG alarm_ParaFormat_get( ULONG alarmType, ULONG alarmId ,CHAR *fmt);
 
 
 
-/** 
+/**
  * 根据 alarmType 和 alarmId 获取告警 priority
  * @param[in]   alarmType    告警类型
  * @param[in]   alarmId      告警ID
- * @return      成功返回告警 priority，失败返回 0 
+ * @return      成功返回告警 priority，失败返回 0
  */
 ULONG alarm_Priority_get( ULONG alarmType, ULONG alarmId );
 
-/** 
+/**
  * 根据 alarmType 和 alarmId 获取告警 PartnerId
  * @param[in]   alarmType    告警类型
  * @param[in]   alarmId      告警ID
- * @return      成功返回告警 PartnerId，失败返回 0 
+ * @return      成功返回告警 PartnerId，失败返回 0
  */
 ULONG alarm_PartnerId_get( ULONG alarmType, ULONG alarmId );
 
-/** 
+/**
  * 判断该告警是否为事件
  * @param[in]   alarmType    告警类型
  * @param[in]   alarmId      告警ID
- * @return      为事件返回真，为告警返回false 
+ * @return      为事件返回真，为告警返回false
  */
 BOOL alarm_is_event( ULONG alarmType, ULONG alarmId );
 
-/** 
+/**
  * 将告警数据转换成字符串
  * @param[in]   pAlmMsg    告警数据
  * @param[in]   logDesc    存放转换后的结果
  * @param[in]   size       logDesc 的大小，建议大小512字节
- * @return      返回指向转换结果的指针（同logDesc） 
+ * @return      返回指向转换结果的指针（同logDesc）
  */
 CHAR *alarmDataToStrings( alarmMsg_t *pAlmMsg, CHAR *logDesc,LONG size );
 
-/** 
+/**
  * 获取当前告警的第一条。
  * @param[out]   pItem    告警条目
- * @return      成功返回 VOS_OK ，失败返回 其他 
+ * @return      成功返回 VOS_OK ，失败返回 其他
  */
 LONG alarm_alm_cur_list_get_first(alm_status_t *pItem);
 
 
-/** 
+/**
  * 获取当前告警的下一条。
  * @param[in ]   pItem    当前条目
  * @param[out]   pItem    下一条目
- * @return      成功返回 VOS_OK ，失败返回 其他 
+ * @return      成功返回 VOS_OK ，失败返回 其他
  */
 LONG alarm_alm_cur_list_get_next(alm_status_t *pItem);
 
 
-/** 
+/**
  * 获取历史告警的第一条。
  * @param[out]   pItem    告警条目
- * @return      成功返回 VOS_OK ，失败返回 其他 
+ * @return      成功返回 VOS_OK ，失败返回 其他
  */
 LONG alarm_alm_hist_list_get_first(alm_status_t *pItem);
 
 
-/** 
+/**
  * 获取历史告警的下一条。
  * @param[in ]   pItem    当前条目
  * @param[out]   pItem    下一条目
- * @return      成功返回 VOS_OK ，失败返回 其他 
+ * @return      成功返回 VOS_OK ，失败返回 其他
  */
 LONG alarm_alm_hist_list_get_next(alm_status_t *pItem);
 
-/** 
+/**
  * 获取事件的第一条。
  * @param[in ]   pItem    当前条目
- * @return      成功返回 VOS_OK ，失败返回 其他 
+ * @return      成功返回 VOS_OK ，失败返回 其他
  */
 LONG alarm_alm_event_list_get_first(alm_status_t *pItem);
 
 
-/** 
+/**
  * 获取事件的下一条。
  * @param[in ]   pItem    当前条目
  * @param[out]   pItem    下一条目
- * @return      成功返回 VOS_OK ，失败返回 其他 
+ * @return      成功返回 VOS_OK ，失败返回 其他
  */
 LONG alarm_alm_event_list_get_next(alm_status_t *pItem);
 

@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 
 
 #ifndef __VOS_STRING_H__
@@ -98,7 +110,7 @@ CHAR *VOS_StrToLower(CHAR *src);
 CHAR *VOS_StrToUpper(CHAR *src);
 
 
-/** 
+/**
  * 复制字符串，申请大小为strlen(src)+1内存，然后将字符串拷入，并返回
  * @param[in]   src       源字符串
  * @param[in]   mod_id    模块ID
@@ -107,7 +119,7 @@ CHAR *VOS_StrToUpper(CHAR *src);
 CHAR *VOS_StrDup (const CHAR *src,INT mod_id);
 
 
-/** 
+/**
  * 复制字符串，并转换为小写，申请大小为strlen(src)+1内存，然后将字符串拷入，并返回
  * @param[in]   src       源字符串
  * @param[in]   mod_id    模块ID
@@ -115,7 +127,7 @@ CHAR *VOS_StrDup (const CHAR *src,INT mod_id);
 CHAR *VOS_StrDupToLower (const CHAR *src,INT mod_id);
 
 
-/** 
+/**
  * 计算从左侧第一个不是空白字符起到字符串结尾的长度
  * @param[in]   szStr      字符串
 * @return      字符串长度
@@ -123,7 +135,7 @@ CHAR *VOS_StrDupToLower (const CHAR *src,INT mod_id);
 ULONG VOS_StrLeftTrimLen(const CHAR *szStr);
 
 
-/** 
+/**
  * 将str 中的old字符替换成new字符
  * @param[in]   src      字符串
  * @param[in]   old      要替换的字符

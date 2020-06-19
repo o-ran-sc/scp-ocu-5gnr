@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 
 
 #include "vos_sys_diff.h"
@@ -230,9 +242,9 @@ typedef unsigned long long ulonglong;
 #endif
 
 #if OS_LINUX
-#define inline  
-#define _inline 
-#define __inline__ 
+#define inline
+#define _inline
+#define __inline__
 #define __const__  const
 #define __signed__ signed
 #define __const__ const
@@ -271,7 +283,7 @@ typedef struct{
         /** IPv4 addr  */
         UINT ip4;
         /** IPv6 addr structure */
-        union 
+        union
         {
             UCHAR     addr8[16];
             USHORT    addr16[8];

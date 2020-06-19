@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 
 #ifndef NR_PDCP_COMMON_H
 #define NR_PDCP_COMMON_H
@@ -66,12 +78,12 @@ typedef enum
 typedef enum
 {
 	UPLINK		= 0,
-	DOWNLINK	= 1 	
+	DOWNLINK	= 1
 }PdcpDirection_e;
 
 
 /* pdcp pdu type */
-typedef enum 
+typedef enum
 {
 	PDCP_CTRL_PDU = 0,			/* control pdu */
 	PDCP_DATA_PDU = 1			/* data pdu */
@@ -292,7 +304,7 @@ typedef enum{
 	REORDER_SPARE22 = PDCP_SPARED,
 	REORDER_SPARE21 = PDCP_SPARED,
 	REORDER_SPARE20 = PDCP_SPARED,
-	REORDER_SPARE19 = PDCP_SPARED,    
+	REORDER_SPARE19 = PDCP_SPARED,
 	REORDER_SPARE18 = PDCP_SPARED,
 	REORDER_SPARE17 = PDCP_SPARED,
 	REORDER_SPARE16 = PDCP_SPARED,
@@ -302,7 +314,7 @@ typedef enum{
 	REORDER_SPARE12 = PDCP_SPARED,
 	REORDER_SPARE11 = PDCP_SPARED,
 	REORDER_SPARE10 = PDCP_SPARED,
-	REORDER_SPARE09 = PDCP_SPARED,    
+	REORDER_SPARE09 = PDCP_SPARED,
 	REORDER_SPARE08 = PDCP_SPARED,
 	REORDER_SPARE07 = PDCP_SPARED,
 	REORDER_SPARE06 = PDCP_SPARED,

@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 
 
 
@@ -30,10 +42,10 @@ extern "C"{
  */
 typedef union vos_sockaddr_u
 {
-    struct sockaddr         sa;     ///< 通用结构 
-    struct sockaddr_in      sin;    ///< IPv4 结构 
+    struct sockaddr         sa;     ///< 通用结构
+    struct sockaddr_in      sin;    ///< IPv4 结构
     struct sockaddr_in6     sin6;   ///< IPv6 结构
-    struct sockaddr_un      un;     ///< unix 结构 
+    struct sockaddr_un      un;     ///< unix 结构
     struct sockaddr_ll      raw;    ///< raw 结构
 }vos_sockaddr_t;
 
@@ -348,7 +360,7 @@ LONG vos_sctp_bindx(LONG sockfd, vos_sockaddr_t *addrs, LONG addrcnt, LONG flags
  * 如果 sock 参数为 IPv6 套接字，则传送给 sctp_bindx() 函数的地址可以为 IPv4 或 IPv6 地址。
  * @param[in ]   sockfd        要绑定的socket
  * @param[in ]   family        协议族，VOS_AF_INET 和 VOS_AF_INET6 有效
- * @param[in ]   port          端口号 
+ * @param[in ]   port          端口号
  * @param[in ]   addrStr       地址字符串数组
  * @param[in ]   addrcnt       地址个数
  * @param[in ]   flags         有如下取值：
@@ -683,4 +695,3 @@ LONG vos_sctp_client_one2many_create_bind(vos_domain_t family,vos_sockaddr_t *s_
 #endif	/* end of __cplusplus */
 
 #endif	/* end of __VOS_SOCKET_H__ */
-

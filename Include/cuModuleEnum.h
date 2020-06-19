@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 #ifndef __CUMODULEENUMH__
 #define __CUMODULEENUMH__
 
@@ -70,7 +82,7 @@ typedef enum
 	NEW_SECURITY_CONTEXT_IND_TRUE = 0
 }NewSecurityCtxInd_e;
 
-typedef enum 
+typedef enum
 {
 	TIME_WAIT_1S	= 0,
 	TIME_WAIT_2S	= 1,
@@ -94,13 +106,13 @@ typedef enum
 	CRITICALITY_NOTIFY = 2
 } Criticality_e;
 
-typedef enum 
+typedef enum
 {
 	ERROR_NOT_UNDERSTOOD	= 0,
 	ERROR_MISSING			= 1
 } ErrorType_e;
 
-typedef enum 
+typedef enum
 {
 	CN_SUPPORT_EPC 	= 0,
 	CN_SUPPORT_5GC 	= 1,
@@ -116,51 +128,51 @@ typedef enum pduSessType
 	Pdu_Session_Type_unstructured	= 4
 } PduSessType_e;
 
-typedef enum iPIndication 
+typedef enum iPIndication
 {
 	IP_REQUIRED		 = 0,
 	IP_PREFERRED	 = 1,
 	IP_NOT_NEEDED	 = 2
 } IPIndication_e;
 
-typedef enum cPIndication 
+typedef enum cPIndication
 {
 	CP_REQUIRED		 = 0,
 	CP_PREFERRED	 = 1,
 	CP_NOT_NEEDED	 = 2
 } CPIndication_e;
 
-typedef enum maxIpDataRate 
+typedef enum maxIpDataRate
 {
 	BITRATE_64K		= 0,
 	MAX_UE_RATE		= 1
 } MaxIpDataRate_e;
 
-typedef enum iPResult 
+typedef enum iPResult
 {
 	IP_RESULT_PERFORMED		= 0,
 	IP_RESULT_NOT_PERFORMED = 1
 } IPResult_e;
 
-typedef enum cPResult 
+typedef enum cPResult
 {
 	CP_RESULT_PERFORMED		= 0,
 	CP_RESULT_NOT_PERFORMED = 1
 } CPResult_e;
 
-typedef enum 
+typedef enum
 {
 	Dynamic5QIDelayCritical_delay_critical	= 0,
 	Dynamic5QIDelayCritical_non_delay_critical	= 1
 } Dynamic5QIDelayCritical_e;
 
-typedef enum 
+typedef enum
 {
 	PreEmptionCapability_shall_not_trigger_pre_emption	= 0,
 	PreEmptionCapability_may_trigger_pre_emption	= 1
 } PreEmptionCapability_e;
 
-typedef enum 
+typedef enum
 {
 	PreEmptionVulnerability_not_pre_emptable	= 0,
 	PreEmptionVulnerability_pre_emptable	= 1
@@ -169,7 +181,7 @@ typedef enum
 
 typedef enum
 {
-	QOS_CHARACTER_PR_NOTHING,	
+	QOS_CHARACTER_PR_NOTHING,
 	QOS_CHARACTER_PR_NON_DINAMIC_5QI,
 	QOS_CHARACTER_PR_DYNAMIC_5QI,
 	QOS_CHARACTER_PR_CHOICE_EXTENSION
@@ -198,7 +210,7 @@ typedef enum
 ***********************************************************************************/
 
 typedef enum ngapCause_s
-{		
+{
 	NG_START,
 	Ng_RNL_UNSPECIFIED,
 	Ng_RNL_TXnRELOCOverallExpiry,
@@ -217,7 +229,7 @@ typedef enum ngapCause_s
 	NG_RNL_NO_RADIO_RESOURCES_AVAILABLE_IN_TARGET_CELL,
 	NG_RNL_UNKNOWN_LOCAL_UE_NGAP_ID,
 	NG_RNL_INCONSISTENT_REMOTE_UE_NGAP_ID,
-	NG_RNL_HANDOVER_DESIRABLE_FOR_RADIO_REASONS,	
+	NG_RNL_HANDOVER_DESIRABLE_FOR_RADIO_REASONS,
 	NG_RNL_TIME_CRITICAL_HANDOVER,
 	NG_RNL_RESOURCE_OPTIMISATION_HANDOVER,
 	NG_RNL_REDUCE_LOAD_IN_SERVING_CELL,
@@ -248,7 +260,7 @@ typedef enum ngapCause_s
 	NG_RNL_RELEASE_DUE_TO_CN_DETECTED_MOBILITY,
 	NG_RNL_N26_INTERFACE_NOT_AVAILABLE,
 	NG_RNL_RELEASE_DUE_TO_PRE_EMPTION,
-	NG_RNL_END,	
+	NG_RNL_END,
 	NG_TL_TRANSPORT_RESOURCE_UNAVAILABLE,
 	NG_TL_UNSPECIFIED,
 	NG_TL_END,
@@ -265,7 +277,7 @@ typedef enum ngapCause_s
 	NG_PC_ABSTRACT_SYNTAX_ERROR,
 	NG_PC_UNSPECIFIED,
 	NG_PC_END,
-	NG_MISC_CONTROL_PROCESSING_OVERLOAD, 
+	NG_MISC_CONTROL_PROCESSING_OVERLOAD,
 	NG_MISC_NOT_ENOUGH_USER_PLANE_PROCESSING_RESOURCES,
 	NG_MISC_HARDWARE_FAILURE,
 	NG_MISC_OM_INTERVENTION,
@@ -273,9 +285,9 @@ typedef enum ngapCause_s
 	NG_MISC_UNSPECIFIED,
 	NG_MISC_END,
 	NG_END
-}NgapCause_e; 
+}NgapCause_e;
 
-typedef enum ngapProcCode 
+typedef enum ngapProcCode
 {
 	Ng_AMFConfigurationUpdate					= 0,
 	Ng_AMFStatusIndication						= 1,
@@ -332,7 +344,7 @@ typedef enum ngapProcCode
 	Ng_SecondaryRATDataUsageReport				= 52
 } NgapProcCode_e;
 
-typedef enum ngapProtocolIeId 
+typedef enum ngapProtocolIeId
 {
 	Ngap_AllowedNSSAI								= 0,
 	Ngap_AMFName									= 1,
@@ -526,7 +538,7 @@ typedef enum
 	CONTEXT_REQUESTED	= 0
 } ueContextRequest_e;
 
-typedef enum 
+typedef enum
 {
 	amfPging_None,
 	amfPging_gNBId,
@@ -540,7 +552,7 @@ typedef enum
 	BOTH_AMF_RAN_NGAPID
 }NgapIdType_e;
 
-typedef enum 
+typedef enum
 {
 	Paging_DRX_v32	= 0,
 	Paging_DRX_v64	= 1,
@@ -560,29 +572,29 @@ typedef enum
 	PAGING_PRIORITY_LEVEL8 = 7,
 }PagingPriority_e;
 
-typedef enum 
+typedef enum
 {
 	UE_RETEN_INFO_UES_RETAINED	= 0
 } UERetentionInformation_e;
 
-typedef enum 
+typedef enum
 {
 	EMERGENCY_FALLBACK_REQUESTED = 0
 } EmergencyFallbackRequestIndicator_e;
 
-typedef enum 
+typedef enum
 {
 	EMERGENCY_SERVICE_TARGET_5GC	= 0,
 	EMERGENCY_SERVICE_TARGET_epc
 } EmergencyServiceTargetCN_e;
 
-typedef enum 
+typedef enum
 {
 	BEHAVIOUR_INFO_SUBSCRIPTION_INFORMATION	= 0,
 	BEHAVIOUR_INFO_STATISTICS				= 1
 } SourceOfUEActivityBehaviourInformation_e;
 
-typedef enum 
+typedef enum
 {
 	NotificationControl_requested	= 0
 } NotificationControl_e;
@@ -598,7 +610,7 @@ typedef enum
 ***********************************************************************************
 ***********************************************************************************/
 
-typedef enum e1apCausePr 
+typedef enum e1apCausePr
 {
 	E1apCause_PR_NOTHING,
 	E1apCause_PR_radioNetwork,
@@ -615,7 +627,7 @@ typedef enum e1apResetPr
 	E1Reset_PR_choice_extension
 } E1apResetPr_e;
 
-typedef enum e1apCauseRadioNetwork 
+typedef enum e1apCauseRadioNetwork
 {
 	E1apCauseRadioNetwork_unspecified = 0,
 	E1apCauseRadioNetwork_unknown_or_already_allocated_gnb_cu_cp_ue_e1ap_id	= 1,
@@ -647,13 +659,13 @@ typedef enum e1apCauseRadioNetwork
 	E1apCauseRadioNetwork_release_due_to_pre_emption = 27
 } E1apCauseRadioNetwork_e;
 
-typedef enum e1apCauseTransport 
+typedef enum e1apCauseTransport
 {
 	E1apCauseTransport_unspecified	= 0,
 	E1apCauseTransport_transport_resource_unavailable	= 1
 } E1apCauseTransport_e;
 
-typedef enum e1apCauseProtocol 
+typedef enum e1apCauseProtocol
 {
 	E1apCauseProtocol_transfer_syntax_error	= 0,
 	E1apCauseProtocol_abstract_syntax_error_reject = 1,
@@ -664,7 +676,7 @@ typedef enum e1apCauseProtocol
 	E1apCauseProtocol_unspecified = 6
 } E1apCauseProtocol_e;
 
-typedef enum e1apCauseMisc 
+typedef enum e1apCauseMisc
 {
 	E1apCauseMisc_control_processing_overload = 0,
 	E1apCauseMisc_not_enough_user_plane_processing_resources = 1,
@@ -720,7 +732,7 @@ typedef enum e1apCause_s
 	MISC_CAUSE_MAX_VALUE
 }E1apCause_e;
 
-typedef enum e1apProcCode 
+typedef enum e1apProcCode
 {
 	E1_e1reset								= 0,
 	E1_e1errorIndication					= 1,
@@ -744,7 +756,7 @@ typedef enum e1apProcCode
 	E1_mRDC_DataUsageReport					= 19
 } E1apProcCode_e;
 
-typedef enum e1apProtocolIeId 
+typedef enum e1apProtocolIeId
 {
 	E1ap_E1Cause										= 0,
 	E1ap_E1CriticalityDiagnostics						= 1,
@@ -829,7 +841,7 @@ typedef enum
 typedef enum
 {
 	BEARER_CXT_STATUS_CHANGE_SUSPEND,
-	BEARER_CXT_STATUS_CHANGE_RESUME 
+	BEARER_CXT_STATUS_CHANGE_RESUME
 } BearCxtStatusChange_e;
 
 typedef enum
@@ -855,7 +867,7 @@ typedef enum
 	IpAlgorithm_NIA3
 }IpAlgorithm_e;
 
-typedef enum 
+typedef enum
 {
 	PRIORITY_LEVEL_SPARE		= 0,
 	PRIORITY_LEVEL_HIGHEST 		= 1,
@@ -875,7 +887,7 @@ typedef enum
 	DL_TX_STOP_STOP 	= 0,
 	DL_TX_STOP_RESUME	= 1
 } DlTXStop_e;
-	
+
 typedef enum
 {
 	RAT_TYPE_NR 		= 0,
@@ -913,7 +925,7 @@ typedef enum
 
 typedef enum
 {
-	ROHC_PARA_PR_NOTHING, 
+	ROHC_PARA_PR_NOTHING,
 	ROHC_PARA_PR_ROHC,
 	ROHC_PARA_PR_UL_ONLY_ROHC,
 	ROHC_PARA_PR_CHOICE_ECTENSION
@@ -1040,12 +1052,12 @@ typedef enum
 	OUTOFORDER_DELIVERY_TRUE = 0
 } OutOfOrderDelivery_e;
 
-typedef enum pdcpSNStatusRequest 
+typedef enum pdcpSNStatusRequest
 {
 	PDCP_SN_Status_Request = 0
 } PdcpSNStatusRequest_e;
 
-typedef enum newUlTnlInfoRequire 
+typedef enum newUlTnlInfoRequire
 {
 	New_UL_TNL_Info_Required = 0
 } NewUlTnlInfoRequire_e;

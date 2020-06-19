@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 
 
 
@@ -16,13 +28,13 @@
 extern "C"{
 #endif
 
-typedef struct 
+typedef struct
 {
      USHORT  usMessageType;     /*用于指示发送或接收*/
-     USHORT  usPririty;         /*优先级（用户自己定义）,支持4个优先级 */  
+     USHORT  usPririty;         /*优先级（用户自己定义）,支持4个优先级 */
      ULONG   ulSrcModuleID;     /*源模块号*/
      ULONG   ulDstModuleID;     /*目标模块号*/
-     ULONG   ulSequence;        /*发送序号,RPC专用*/ 
+     ULONG   ulSequence;        /*发送序号,RPC专用*/
 
      ULONG   ulSrcSlotID;	    /*源槽位号*/
      ULONG   ulDstSlotID;       /*目的槽位号*/
@@ -30,7 +42,7 @@ typedef struct
      UCHAR   ucMsgBodyStyle;    /*用于指明消息头和消息体是否是一体的*/
      USHORT  usMsgCode;	        /*消息码，具体消息类型的细分*/
      LONG    ulUserCode;        /* usertask user code */
-     
+
      USHORT  usResponseType;    /*是否要求接收方用户应答：ACK/ NOACK/NEGACK*/
      USHORT  usFrameLen;        /*frame content 的长度 ，用户数据区长度*/
      VOID *  ptrMsgBody;        /*消息体指针*/
@@ -44,5 +56,3 @@ typedef struct
 #endif
 
 #endif /*__SYSDEF_H__*/
-
-

@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 #include "sdapCore.h"
 
 SdapGlobalDtat_t	s_SdapGlobalData[UPC_MAX_UE_NUM] = {{0}};
@@ -29,7 +41,7 @@ void sdapResortSessionId(SdapGlobalDtat_t	*pGlobalData, int idx)
 {
 	int i = 0;
 	int j = 0;
-	
+
 	for(i = 0; i < pGlobalData->sessNum; i++)
 	{
 		if(i == idx)
@@ -81,9 +93,9 @@ INT32 sdapCreateQosInfo(SdapDrbCfg_t *pDrbCfg, upcTempDrbInfo_t	*pTempDrb, SdapD
 		{
 			continue;
 		}
-		
+
 		qosFlowId = pTempQos->qosFlowId;
-		pDrbCfg->qfi[pDrbCfg->qfiNum] = qosFlowId;		
+		pDrbCfg->qfi[pDrbCfg->qfiNum] = qosFlowId;
 		pDrbCfg->qosFlowInfo[qosFlowId].qosFlowLevelQosPar = pTempQos->qosPara;
 		if(pTempQos->qosMapFlag)
 		{
@@ -99,7 +111,7 @@ INT32 sdapCreateQosInfo(SdapDrbCfg_t *pDrbCfg, upcTempDrbInfo_t	*pTempDrb, SdapD
 	{
 		return VOS_ERROR;
 	}
-	
+
 	return VOS_OK;
 }
 
@@ -121,7 +133,7 @@ INT32 sdapCreateDrbInfo(SdapInstance_t *pInstance, upcTempSessInfo_t *pSessTempI
 		{
 			continue;
 		}
-		
+
 		drbId = pTempDrb->drbId;
 
 		if(VOS_OK != sdapCreateQosInfo(&pInstance->drbCfg[drbId - 1], pTempDrb, &pCfgRet->actDrbCfg[drbId - 1]))
@@ -137,13 +149,13 @@ INT32 sdapCreateDrbInfo(SdapInstance_t *pInstance, upcTempSessInfo_t *pSessTempI
 
 		VOS_MemCpy(&pInstance->drbCfg[drbId - 1].sdapCfg, &pTempDrb->sdapConfig, sizeof(SdapCfg_t));
 
-		pInstance->drbCfg[drbId - 1].drbId = drbId;	
+		pInstance->drbCfg[drbId - 1].drbId = drbId;
 		pInstance->drbId[pInstance->drbNum] = drbId;
 		pInstance->drbNum++;
 	}
 
 	if(0 == pCfgRet->actDrbNum)
-	{	
+	{
 		pCfgRet->sessFailCause = RNL_UNSPECIFIED;
 		return VOS_ERROR;
 	}
@@ -157,15 +169,15 @@ extern INT32 sdapInactiveDetectSet(UINT64 ueE1apId);
 
 INT32 sdapCreateNewInstance
 (
-	SdapGlobalDtat_t	*pGlobalData, 
-	UINT64	upE1apId, 
-	upcTempSessInfo_t *pSessTempInfo, 
+	SdapGlobalDtat_t	*pGlobalData,
+	UINT64	upE1apId,
+	upcTempSessInfo_t *pSessTempInfo,
 	sdapSessCfgRet_t *pCfgRet
 )
 {
 	int idx = 0;
 	UINT64	sessId = 0;
-	
+
 	pGlobalData->upE1apId = upE1apId;
 	sessId = pSessTempInfo->pduSessId;
 	idx = pGlobalData->sessNum;
@@ -179,8 +191,8 @@ INT32 sdapCreateNewInstance
 	pGlobalData->sessId[idx] = sessId;
 	pGlobalData->sessNum++;
 
-	printfSdapNewInstance(pGlobalData); 
-	
+	printfSdapNewInstance(pGlobalData);
+
 	return VOS_OK;
 }
 
@@ -249,7 +261,7 @@ INT32 sdapDeleteDrbInfoOfInstance(UINT64 upE1apId, UINT8 sessId, UINT8 drbId)
 		if(sessId == pGlobalData->sessId[i])
 		{
 			sdapDeleteDrbInfo(&pGlobalData->sdapInstance[sessId], drbId);
-		
+
 			return VOS_OK;
 		}
 	}
@@ -285,4 +297,3 @@ INT32 sdapDeleteInstance(UINT64	upE1apId, UINT16 sessId)
 	return VOS_OK;
 }
 #endif
-

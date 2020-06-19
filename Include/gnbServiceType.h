@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 
 #ifndef __GNB_COMM_TYPE_H__
 #define __GNB_COMM_TYPE_H__
@@ -82,7 +94,7 @@ typedef enum
 {
     CELL_ACTIVE_STATE,
     CELL_INACTIVE_STATE,
-    
+
 }CellState_e;
 
 
@@ -107,7 +119,7 @@ typedef struct  NrCellId
 typedef struct  plmnInformation
 {
     UINT16                  bitMask;
-    UINT8                   plmnIdNum;  
+    UINT8                   plmnIdNum;
     PlmnId_t                plmnId[MAX_PLMN_ID_NUM];
     UINT32                  trackingAreaCode;  /*option*/
     UINT8                   ranac;             /*option*/
@@ -146,4 +158,3 @@ typedef LONG     GnbCuId;
 
 
 #endif
-

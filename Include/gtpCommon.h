@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 
 #ifndef GTPU_COMMON_H
 #define GTPU_COMMON_H
@@ -20,7 +32,7 @@
 #include "msgb.h"
 
 
-#define GTP_MAX_TUN_NUM					 100	
+#define GTP_MAX_TUN_NUM					 100
 #define GTPU_MODULE 					   1	/* just for compile */
 #define GTP_MAX_DATA_LEN				8000
 #define GTP_HEADER_SIZE_SHORT  			   8
@@ -40,7 +52,7 @@
 #define GTP_ERROR            			  26 	/* Error Indication */
 #define GTP_SUPP_EXT_HEADER  			  31 	/* Supported Extension Headers Notification */
 #define GTP_GPDU            			 255 	/* G-PDU */
-#define GTP_END_MARKER      			 254 
+#define GTP_END_MARKER      			 254
 
 /* for f1u pdu */
 #define GTP_DLUSERDATA_EX_LEN			   2
@@ -121,7 +133,7 @@ typedef struct
     UINT32 tei; 		/* 05 - 08 Tunnel Endpoint ID */
 } GtpHeadShort_t;
 
-typedef struct 
+typedef struct
 { /*    Descriptions from 3GPP 29060 */
     UINT8 pn :1;		/*    .......0 PN: N-PDU Number flag */
     UINT8 s :1;			/*    ......0. Sequence number flag: 0 */
@@ -163,7 +175,7 @@ struct gtpExtHead{
 /* GTP-U packet */
 typedef struct
 {
-    GtpHeadShort_t h;    
+    GtpHeadShort_t h;
     UINT8 			 p[GTP_MAX_DATA_LEN];		/* store data */
 }GtpPacketShort_t;
 
@@ -196,7 +208,7 @@ typedef struct tun
 typedef struct gtpMsg
 {
     UINT16 					seq; 			/* The sequence number */
-    UINT8  					type; 			/* The type of packet */    
+    UINT8  					type; 			/* The type of packet */
     UINT32 					l; 				/* Length of the packet */
     union gtpPacket 		p; 				/* The packet stored */
     vos_sock_info_t			*pOpval; 		/* Address packet was sent to / received from */
@@ -210,16 +222,16 @@ typedef struct
 {
 	GtpType_e		gtpId;
 	ULONG 			userModuleID;
-	
+
 	/* Parameters related to the network INT32erface */
 	vos_sockaddr_t  localAddr;						/* Local IP address for signaling and G-PDU */
-	
+
     /* Parameters related to signaling messages */
     UINT16 			seq_next; 			 			/* Next sequence number to use */
     UINT8 			restart_counter; 		 		/* Increment on restart. */
    	plist 			pReqMsgList;    				/* list header */
 	Tun_t 	   	   *tuns[GTP_MAX_TUN_NUM]; 			/* store memory,use TEID_OWN assignment */
-    					
+
     /* Counters ,some of them may not be used. */
     UINT32 err_socket; 			/* Number of socket errors */
     UINT32 err_readfrom; 		/* Number of readfrom errors */
@@ -241,7 +253,7 @@ typedef struct
 } Gtp_t;
 
 
-typedef struct 
+typedef struct
 {
 	UINT8	   *pPdu;			/* length, content, next extension type */
 	UINT16		len;			/* len = exHeaderLen * 4 */
@@ -252,10 +264,10 @@ typedef struct
 /* log level */
 typedef enum gtpuLogLevel
 {
-	GTPULOG_CRIT = 1,        ///<  critical conditions 
-	GTPULOG_ERR,             ///<  error conditions 
-	GTPULOG_WARNING,         ///<  warning conditions 
-	GTPULOG_INFO,            ///<  informational 
+	GTPULOG_CRIT = 1,        ///<  critical conditions
+	GTPULOG_ERR,             ///<  error conditions
+	GTPULOG_WARNING,         ///<  warning conditions
+	GTPULOG_INFO,            ///<  informational
 	GTPULOG_DEBUG,           ///<  debug info
 } GtpuLogLevel_e;
 
@@ -289,4 +301,3 @@ typedef struct
 
 
 #endif /* GTPU_COMMON_H */
-

@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 
 
 
@@ -42,24 +54,24 @@ extern "C"{
 #define DB_FILTER_SUB_VAL_NUM   8
 
 /** INTEGER类型数据长度 */
-#define DB_INTEGER_LEN    8 
+#define DB_INTEGER_LEN    8
 
 
 /** TIME类型数据长度 */
-#define DB_TIME_LEN    16 
+#define DB_TIME_LEN    16
 
 
 /** 时间字符串数据长度 */
-#define DB_TIME_STR_MAX_LEN    22 
+#define DB_TIME_STR_MAX_LEN    22
 
 /** MAC地址类型数据长度 */
-#define DB_MAC_ADDR_STR_MAX_LEN    18 
+#define DB_MAC_ADDR_STR_MAX_LEN    18
 
 /** IPV4地址类型数据长度 */
-#define DB_IPV4_ADDR_STR_MAX_LEN   16 
+#define DB_IPV4_ADDR_STR_MAX_LEN   16
 
 /** IPV6地址类型数据长度 */
-#define DB_IPV6_ADDR_STR_MAX_LEN   40 
+#define DB_IPV6_ADDR_STR_MAX_LEN   40
 
 
 #define DB_FILTER_OP_STR_LEN  10
@@ -69,41 +81,41 @@ extern "C"{
 
 /** 数据库的数据类型 */
 typedef enum DB_data_type_e{
-    DB_DATA_TYPE_INTEGER        = 1L,  ///< 数值型 
-    DB_DATA_TYPE_STR               ,  ///< 字符串型 
-    DB_DATA_TYPE_DATETIME          ,  ///< 时间型 
-    DB_DATA_TYPE_MAC               ,  ///< MAC地址型 
-    DB_DATA_TYPE_IPV4_ADDR         ,  ///< IPv4地址型 
-    DB_DATA_TYPE_IPV6_ADDR         ,  ///< IPv6地址型 
-    DB_DATA_TYPE_BUFFER            ,  ///< buffer型 
+    DB_DATA_TYPE_INTEGER        = 1L,  ///< 数值型
+    DB_DATA_TYPE_STR               ,  ///< 字符串型
+    DB_DATA_TYPE_DATETIME          ,  ///< 时间型
+    DB_DATA_TYPE_MAC               ,  ///< MAC地址型
+    DB_DATA_TYPE_IPV4_ADDR         ,  ///< IPv4地址型
+    DB_DATA_TYPE_IPV6_ADDR         ,  ///< IPv6地址型
+    DB_DATA_TYPE_BUFFER            ,  ///< buffer型
     DB_DATA_TYPE_MAX
 }DB_data_type_t;
 
 
 /** 数据库的查询的比较类型 */
 typedef enum DB_filter_sub_type_e{
-    DB_FILTER_SUB_TYPE_EQUAL        = 1,  ///< 相等 
-    DB_FILTER_SUB_TYPE_N_EQUAL         ,  ///< 不相等 
-    DB_FILTER_SUB_TYPE_GREAT           ,  ///< 大于 
-    DB_FILTER_SUB_TYPE_LESS            ,  ///< 小于 
-    DB_FILTER_SUB_TYPE_GREAT_EQ        ,  ///< 大于等于 
-    DB_FILTER_SUB_TYPE_LESS_EQ         ,  ///< 小于等于 
-    DB_FILTER_SUB_TYPE_INCLUDE         ,  ///< 包含 
-    DB_FILTER_SUB_TYPE_EXCLUDE         ,  ///< 不包含 
+    DB_FILTER_SUB_TYPE_EQUAL        = 1,  ///< 相等
+    DB_FILTER_SUB_TYPE_N_EQUAL         ,  ///< 不相等
+    DB_FILTER_SUB_TYPE_GREAT           ,  ///< 大于
+    DB_FILTER_SUB_TYPE_LESS            ,  ///< 小于
+    DB_FILTER_SUB_TYPE_GREAT_EQ        ,  ///< 大于等于
+    DB_FILTER_SUB_TYPE_LESS_EQ         ,  ///< 小于等于
+    DB_FILTER_SUB_TYPE_INCLUDE         ,  ///< 包含
+    DB_FILTER_SUB_TYPE_EXCLUDE         ,  ///< 不包含
     DB_FILTER_SUB_TYPE_MAX
 }DB_filter_sub_type_t;
 
 /** filter的组合方式 */
 typedef enum DB_filter_option_e{
-    DB_FILTER_OPTION_AND        = 1,  ///< 与 
-    DB_FILTER_OPTION_OR            ,  ///< 或 
+    DB_FILTER_OPTION_AND        = 1,  ///< 与
+    DB_FILTER_OPTION_OR            ,  ///< 或
     DB_filter_TYPE_MAX
 }DB_filter_option_t;
 
 /** 排序方式 */
 typedef enum DB_order_type_e{
     DB_ORDER_TYPE_ASCEND        = 0,  ///< 升序(默认)
-    DB_ORDER_TYPE_DESCEND       = 1,  ///< 降序 
+    DB_ORDER_TYPE_DESCEND       = 1,  ///< 降序
     DB_ORDER_TYPE_MAX
 }DB_order_type_t;
 #define  DB_ORDER_TYPE_DESCEND_STR "DESC"
@@ -128,18 +140,18 @@ typedef union DB_data_val_u{
 
 /** 列信息 */
 typedef struct DB_column_info_s{
-    CHAR name[DB_COLUMN_NAME_LEN];              ///< 列名 
-    LONG type;                                  ///< 数据的类型 
-    LONG size;                                  ///< 对于BUFFER和STR 类型，代表BUFFER 和 STR(包含字符串结尾 '\0') 占用的字节数 
-    LONG pkey;                                  ///< 主键标志 
-    CHAR fkey[DB_FKEY_LEN];                     ///< 外键,表名+.+列名的字符串，格式为 table(column)，字符串长度为 0 则表示不是外键 
+    CHAR name[DB_COLUMN_NAME_LEN];              ///< 列名
+    LONG type;                                  ///< 数据的类型
+    LONG size;                                  ///< 对于BUFFER和STR 类型，代表BUFFER 和 STR(包含字符串结尾 '\0') 占用的字节数
+    LONG pkey;                                  ///< 主键标志
+    CHAR fkey[DB_FKEY_LEN];                     ///< 外键,表名+.+列名的字符串，格式为 table(column)，字符串长度为 0 则表示不是外键
     DB_data_val_t defaultVal;                   ///< 默认值
 }VOS_PACKED DB_column_info_t;
 
 /** 数据库句柄 */
 typedef struct DB_database_s{
-    CHAR path[FILE_PATH_MAX];       ///< 文件路径 
-    VOID *handle;                   ///< 被打开的数据库 
+    CHAR path[FILE_PATH_MAX];       ///< 文件路径
+    VOID *handle;                   ///< 被打开的数据库
     LONG seqID;
 }DB_database_t;
 
@@ -157,7 +169,7 @@ typedef struct DB_table_info_s{
     CHAR name[DB_TABLE_NAME_LEN];       ///< name         表名
     LONG max_row;                       ///< 静态表标志，1为静态表，0为动态表
     DB_table_init_func_t table_init_func;    ///< 表初始化函数，可以为空
-    CHAR table_init_func_name[DB_TABLE_INIT_FUNC_NAME_LEN];   
+    CHAR table_init_func_name[DB_TABLE_INIT_FUNC_NAME_LEN];
 }DB_table_info_t;
 
 /** filer子元素 */
@@ -193,39 +205,39 @@ typedef enum DB_ret_code_e{
     DB_RET_CODE_table_full       ,           ///< 表已满，无法在添加数据
 
     DB_RET_CODE_error,                       ///< 其他错误
-    DB_RET_CODE_max,                         ///< 
+    DB_RET_CODE_max,                         ///<
 }DB_ret_code_t;
 
 
-/** 
+/**
  * 打开平台数据库
  * @param[out]   db           成功时返回被打开的数据
  * @return      成功返回 VOS_OK，失败则返回其他
- */ 
+ */
 LONG DB_open_plat_db(DB_database_t *db);
 
 
-/** 
+/**
  * 关闭平台数据库
  * @param[in ]   db           要操作的数据库
  * @return      成功返回 VOS_OK，失败则返回其他
- */ 
+ */
 LONG DB_close_plat_db(DB_database_t *db);
 
 
-/** 
+/**
  * 查看表是否存在
  * @param[in ]   db           要操作的数据库
  * @param[in ]   table_name   表名
  * @param[out]   retCode      数据库执行结果，如果不关心可以填 NULL，如果关心需要传入timeout，等待时间
  * @param[in ]   timeout      等待执行结果的时间，单位 秒
  * @return      返回向数据库模块发送消息的结果，成功返回 VOS_OK，失败则返回其他，
- */ 
+ */
 BOOL DB_table_exist(DB_database_t *db,const CHAR *table_name,
                         LONG *retCode,LONG timeout);
 
 
-/** 
+/**
  * 在指定数据库中创建表
  * @param[in ]   db           要操作的数据库
  * @param[in ]   table        表信息
@@ -233,24 +245,24 @@ BOOL DB_table_exist(DB_database_t *db,const CHAR *table_name,
  * @param[out]   retCode      数据库执行结果，如果不关心可以填 NULL，如果关心需要传入timeout，等待时间
  * @param[in ]   timeout      等待执行结果的时间，单位 秒
  * @return      返回向数据库模块发送消息的结果，成功返回 VOS_OK，失败则返回其他，
- */ 
+ */
 LONG DB_table_create(DB_database_t *db,DB_table_info_t *table,DB_column_info_t cols[],
                             LONG *retCode,LONG timeout);
 
 
-/** 
+/**
  * 在指定数据库中删除表
  * @param[in ]   db           要操作的数据库
  * @param[in ]   name         表名
  * @param[out]   retCode      数据库执行结果，如果不关心可以填 NULL，如果关心需要传入timeout，等待时间
  * @param[in ]   timeout      等待执行结果的时间，单位 秒
  * @return      返回向数据库模块发送消息的结果，成功返回 VOS_OK，失败则返回其他，
- */ 
+ */
 LONG DB_table_delete(DB_database_t *db,const CHAR name[DB_TABLE_NAME_LEN],
                                 LONG *retCode,LONG timeout);
 
 
-/** 
+/**
  * 向表中插入一行数据
  * @param[in ]   db           要操作的数据库
  * @param[in ]   table_name   要操作的表名
@@ -259,12 +271,12 @@ LONG DB_table_delete(DB_database_t *db,const CHAR name[DB_TABLE_NAME_LEN],
  * @param[out]   retCode      数据库执行结果，如果不关心可以填 NULL，如果关心需要传入timeout，等待时间
  * @param[in ]   timeout      等待执行结果的时间，单位 秒
  * @return      返回向数据库模块发送消息的结果，成功返回 VOS_OK，失败则返回其他，
- */ 
+ */
 LONG DB_table_row_add(DB_database_t *db,const CHAR table_name[DB_TABLE_NAME_LEN],VOID *data,
                                     LONG *retCode,LONG timeout);
 
 
-/** 
+/**
 * 查询数据
 * @param[in ]   db           要操作的数据库
 * @param[in ]   table_name   要操作的表名
@@ -276,14 +288,14 @@ LONG DB_table_row_add(DB_database_t *db,const CHAR table_name[DB_TABLE_NAME_LEN]
 * @param[out]   retCode      数据库执行结果，如果不关心可以填 NULL，如果关心需要传入timeout，等待时间
 * @param[in ]   timeout      等待执行结果的时间，单位 秒
 * @return      返回向数据库模块发送消息的结果，成功返回 VOS_OK，失败则返回其他，
-*/ 
+*/
 LONG DB_table_row_query(DB_database_t *db,const CHAR table_name[DB_TABLE_NAME_LEN],DB_row_handle_t *row_handle,
                             DB_query_filter_t filter[],LONG filter_num,DB_order_t order[],LONG order_num,
                             LONG *retCode,LONG timeout);
 
 
 
-/** 
+/**
 * 获取行句柄当前行数据，并自动指向下一行，当没下一行数据时，句柄会被销毁，不可再用
 * @param[in ]   db           要操作的数据库
 * @param[in ]   table_name   要操作的表名
@@ -293,12 +305,12 @@ LONG DB_table_row_query(DB_database_t *db,const CHAR table_name[DB_TABLE_NAME_LE
 * @param[out]   retCode      数据库执行结果，如果不关心可以填 NULL，如果关心需要传入timeout，等待时间
 * @param[in ]   timeout      等待执行结果的时间，单位 秒
 * @return      返回向数据库模块发送消息的结果，成功返回 VOS_OK，失败则返回其他，
-*/ 
+*/
 LONG DB_table_row_data_pop(DB_database_t *db,const CHAR table_name[DB_TABLE_NAME_LEN],
                                         DB_row_handle_t *row_handle,VOID *data,
                                         LONG *retCode,LONG timeout);
 
-/** 
+/**
 * 销毁行句柄
 * @param[in ]   db           要操作的数据库
 * @param[in ]   table_name   要操作的表名
@@ -306,12 +318,12 @@ LONG DB_table_row_data_pop(DB_database_t *db,const CHAR table_name[DB_TABLE_NAME
 * @param[out]   retCode      数据库执行结果，如果不关心可以填 NULL，如果关心需要传入timeout，等待时间
 * @param[in ]   timeout      等待执行结果的时间，单位 秒
 * @return      返回向数据库模块发送消息的结果，成功返回 VOS_OK，失败则返回其他，
-*/ 
+*/
 LONG DB_table_row_handle_destroy(DB_database_t *db,const CHAR table_name[DB_TABLE_NAME_LEN],DB_row_handle_t *row_handle,
                                             LONG *retCode,LONG timeout);
 
 
-/** 
+/**
 * 删除行
 * @param[in ]   db           要操作的数据库
 * @param[in ]   table_name   要操作的表名
@@ -320,14 +332,14 @@ LONG DB_table_row_handle_destroy(DB_database_t *db,const CHAR table_name[DB_TABL
 * @param[out]   retCode      数据库执行结果，如果不关心可以填 NULL，如果关心需要传入timeout，等待时间
 * @param[in ]   timeout      等待执行结果的时间，单位 秒
 * @return      返回向数据库模块发送消息的结果，成功返回 VOS_OK，失败则返回其他，
-*/ 
+*/
 LONG DB_table_row_delete(DB_database_t *db,const CHAR table_name[DB_TABLE_NAME_LEN],
                             DB_query_filter_t filter[],LONG filter_num,
                             LONG *retCode,LONG timeout);
 
 
 
-/** 
+/**
 * 更新行
 * @param[in ]   db           要操作的数据库
 * @param[in ]   table_name   要操作的表名
@@ -340,13 +352,13 @@ LONG DB_table_row_delete(DB_database_t *db,const CHAR table_name[DB_TABLE_NAME_L
 * @param[out]   retCode      数据库执行结果，如果不关心可以填 NULL，如果关心需要传入timeout，等待时间
 * @param[in ]   timeout      等待执行结果的时间，单位 秒
 * @return      返回向数据库模块发送消息的结果，成功返回 VOS_OK，失败则返回其他，
-*/ 
+*/
 LONG DB_table_row_update(DB_database_t *db,const CHAR table_name[DB_TABLE_NAME_LEN],VOID *newData,
                             DB_query_filter_t filter[],LONG filter_num,DB_column_info_t col[],LONG col_num,
                             LONG *retCode,LONG timeout);
 
 
-/** 
+/**
 * 计算行数
 * @param[in ]   db           要操作的数据库
 * @param[in ]   table_name   要操作的表名
@@ -356,12 +368,12 @@ LONG DB_table_row_update(DB_database_t *db,const CHAR table_name[DB_TABLE_NAME_L
 * @param[out]   retCode      数据库执行结果，如果不关心可以填 NULL，如果关心需要传入timeout，等待时间
 * @param[in ]   timeout      等待执行结果的时间，单位 秒
 * @return      返回向数据库模块发送消息的结果，成功返回 VOS_OK，失败则返回其他，
-*/ 
+*/
 LONG DB_table_row_count(DB_database_t *db,const CHAR table_name[DB_TABLE_NAME_LEN],LONG *row_count,
                             DB_query_filter_t filter[],LONG filter_num,
                             LONG *retCode,LONG timeout);
 
-/** 
+/**
 * 覆盖最早插入的数据，用于表行数到达上限的覆盖操作
 * @param[in ]   db           要操作的数据库
 * @param[in ]   table_name   要操作的表名
@@ -370,16 +382,16 @@ LONG DB_table_row_count(DB_database_t *db,const CHAR table_name[DB_TABLE_NAME_LE
 * @param[out]   retCode      数据库执行结果，如果不关心可以填 NULL，如果关心需要传入timeout，等待时间
 * @param[in ]   timeout      等待执行结果的时间，单位 秒
 * @return      返回向数据库模块发送消息的结果，成功返回 VOS_OK，失败则返回其他，
-*/ 
+*/
 LONG DB_table_overwrite_first_row( DB_database_t *db,const CHAR table_name[DB_TABLE_NAME_LEN],VOID *newData,
                                             LONG *retCode,LONG timeout);
 
 
-/** 
+/**
 * 将DB 的error code转换成字符串
 * @param[in ]   code           错误码
 * @return      返回错误码对应的字符串
-*/ 
+*/
 const CHAR *DB_err_msg(LONG code);
 
 
@@ -388,4 +400,3 @@ const CHAR *DB_err_msg(LONG code);
 #endif	/* end of __cplusplus */
 
 #endif	/* end of __PLAT_DB_H__ */
-

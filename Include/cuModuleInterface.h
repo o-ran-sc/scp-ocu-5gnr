@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 
 
 #ifndef __CUMODULEINTERFACEH__
@@ -137,7 +149,7 @@ typedef struct ueRadioCapaForPagOfNr
 
 #define UE_RADIO_CAPABILITY_PAGING_NR_PRESENT       (1 << 0)
 #define UE_RADIO_CAPABILITY_PAGING_EUTRA_PRESENT    (1 << 1)
-typedef struct UeRadioCapaForPag 
+typedef struct UeRadioCapaForPag
 {
     UINT16                                  bitMask;
     UeRadioCapaForPagOfNr_t                 ueRadioCapabilityForPagingOfNr;     /* OPTIONAL */
@@ -150,7 +162,7 @@ typedef struct UeRadioCapability
     UINT8                   buffer[MAX_SIZE_OF_OCTET_STRING];
 }UeRadioCapability_t;
 
-typedef struct ngRanTraceId 
+typedef struct ngRanTraceId
 {
     UINT32                  size;
     UINT8                   buffer[MAX_SIZE_OF_OCTET_STRING];
@@ -158,7 +170,7 @@ typedef struct ngRanTraceId
 
 typedef UINT8 InterToTrace_t;
 
-typedef struct traceActiv 
+typedef struct traceActiv
 {
     NgRanTraceId_t          ngRanTraceId;
     InterToTrace_t          interfacesToTrace;
@@ -203,7 +215,7 @@ typedef struct mobiRestrInfo
     CuTac_t                                     notAllowedTac[ngap_maxnoofEPLMNsPlusOne][ngap_maxnoofAllowedAreas];
 }MobiRestrInfo_t;
 
-typedef struct ueSecurCapa 
+typedef struct ueSecurCapa
 {
     UINT16                                  nrEncryptionAlgorithms;
     UINT16                                  nrIntegrityProtectionAlgorithms;
@@ -214,7 +226,7 @@ typedef struct ueSecurCapa
 #define EXPECTED_ACTIVITY_PERIOD_PRESENT                        (1 << 0)
 #define EXPECTED_IDLE_PERIOD_PRESENT                            (1 << 1)
 #define SOURCEOF_UE_ACTIVITY_BEHAVIOUR_INFORMATION_PRESENT      (1 << 2)
-typedef struct expectedUeActivityBehaviour 
+typedef struct expectedUeActivityBehaviour
 {
     UINT16                                  	bitMask;
     INT64					                	expectedActivityPeriod;                 /* OPTIONAL */
@@ -223,7 +235,7 @@ typedef struct expectedUeActivityBehaviour
 } ExpectedUeActivityBehaviour_t;
 
 #define EXPECTEDUEMOVINGTRAJECTORYITEM_TIME_STAYED_IN_CELL_PRESENT              (1 << 0)
-typedef struct expectedUeMovingTrajectoryItem 
+typedef struct expectedUeMovingTrajectoryItem
 {
     UINT16                                      bitMask;
     CuNrCgi_t                                   nrCgi;
@@ -260,7 +272,7 @@ typedef struct coreAssitInfo
 
 #define NOTIFICATION_CONTROL_PRESENT                (1 << 0)
 #define MAX_PACKET_LOSSRATE_DL_PRESENT              (1 << 1)
-#define MAX_PACKET_LOSSRATE_UL_PRESENT              (1 << 2)    
+#define MAX_PACKET_LOSSRATE_UL_PRESENT              (1 << 2)
 typedef struct gbrQosInfo
 {
     UINT16                                  bitMask;
@@ -296,7 +308,7 @@ typedef struct qosFlowSetupReqItem
 } QosFlowSetupReqItem_t;
 
 #define MAX_INTERITY_PROTECTED_DATARATE_PRESENT     (1 << 0)
-typedef struct securIndic 
+typedef struct securIndic
 {
     UINT16                                  bitMask;
     INT64							        integrityProtectionIndication;
@@ -380,7 +392,7 @@ typedef struct assistDataForPaging
 	PagingAttemptInfo_t						pagingAttemptInfo;//Optional
 }AssistDataForPaging_t;
 #define QOSFLOW_MAPPING_INDICATION_PRESENT  (1 << 0)
-typedef struct AssocQosFlowItem 
+typedef struct AssocQosFlowItem
 {
     UINT16                                  bitMask;
     INT64			                        qosFlowId;
@@ -391,10 +403,10 @@ typedef struct qosFlowPerTnlInfo
 {
     UpTransLayerInfo_t                      upTransLayerInfo;
     UINT8                                   assocQosFlowNum;
-    AssocQosFlowItem_t                      assocQosItem[ngap_maxnoofQosFlows];          
+    AssocQosFlowItem_t                      assocQosItem[ngap_maxnoofQosFlows];
 }QosFlowPerTnlInfo_t;
 
-typedef struct qosFlowIte 
+typedef struct qosFlowIte
 {
     INT64					                    qosFlowId;
     NgapCause_e                                 cause;
@@ -621,7 +633,7 @@ typedef struct
 
 typedef struct
 {
-	NgapCause_e								cause;	
+	NgapCause_e								cause;
 }PathSwitchReqUnsuccTransfer_t;
 
 
@@ -659,7 +671,7 @@ typedef struct
 {
 	UINT8					areaIntItemNum;
 	AreaInterestItem_t		areaIntItem[ngap_maxnoofAoI];
-	UINT8					locaReportReferenceId;	
+	UINT8					locaReportReferenceId;
 }AreaInterestListItem_t;
 
 typedef struct
@@ -668,7 +680,7 @@ typedef struct
 	ReportArea_e			reportArea;
 	UINT8					areaIntListItemNum;
 	AreaInterestListItem_t	areaIntListItem[ngap_maxnoofAoI];
-	UINT8					locaReportReferenceIdTobeCancel;//Condition 
+	UINT8					locaReportReferenceIdTobeCancel;//Condition
 }LocationReportRequestType_t;
 
 /**********************************************************************************
@@ -688,7 +700,7 @@ typedef struct ngapRegistergNBReq
 	PagingDRX_e								ranDefaPagDrx;
 	UINT8									ueRetInfoFlag;
 	UERetentionInformation_e				ueRetenInfo;
-	RegisterAmf_t							registerAmfInfo;               
+	RegisterAmf_t							registerAmfInfo;
 }NgapRegistergNBReq_t;
 
 /* First NAS Request (Initial Ue Message)*/
@@ -696,7 +708,7 @@ typedef struct ngapRegistergNBReq
 #define FIRST_UL_NAS_FIVEG_STMSI_PRESENT        		(1 << 1)
 #define FIRST_UL_NAS_LOCATION_INFO_TIMESTAMP_PRESENT	(1 << 2)
 #define FIRST_UL_NAS_UE_CONTEXT_REQ_PRESENT     		(1 << 3)
-typedef struct ngapFirstNasReq 
+typedef struct ngapFirstNasReq
 {
 	UINT16									bitMask;
 	NrCellId_t								nrCellId;
@@ -726,7 +738,7 @@ typedef struct ngapUeRadioCapaCheckRsp
 
 /* UL NAS Transfer */
 #define UL_NAS_LOCATION_INFO_TIMESTAMP_PRESENT	(1 << 0)
-typedef struct ngapULNas 
+typedef struct ngapULNas
 {
 	UINT16									bitMask;
 	Instance_t								instance;
@@ -752,7 +764,7 @@ typedef struct ngapUeRadioCapaInfoIndication
 }NgapUeRadioCapaInfoIndication_t;
 
 /* Initial Context Setup Response */
-typedef struct ngapInitialContextSetupResp 
+typedef struct ngapInitialContextSetupResp
 {
 	Instance_t								instance;
 	AmfUeNgapId_t                           amfUeNgapId;
@@ -778,7 +790,7 @@ typedef struct ngapPduSessSetupRsp
 }NgapPduSessSetupRsp_t;
 
 /* Ue Context Release Request */
-typedef struct ngapUeCxtReleaseReq 
+typedef struct ngapUeCxtReleaseReq
 {
 	Instance_t								instance;
     UINT64			                        ranUeNgapId;
@@ -790,7 +802,7 @@ typedef struct ngapUeCxtReleaseReq
 
 /* Ue Context Release Complete */
 #define UE_CONTEXT_RELEASE_COMPLETE_USERLOCATION_TIMESTAMP_PRESENT	(1 << 0)
-typedef struct ngapUeReleaseComplete 
+typedef struct ngapUeReleaseComplete
 {
 	UINT16									bitMask;
 	Instance_t								instance;
@@ -804,7 +816,7 @@ typedef struct ngapUeReleaseComplete
     RecommCellforPag_t                      recomCellInfo;
     RecommRanforPag_t                       recomRanInfo;
     UINT8                                   rlsSessNum;
-	PduSessResourceItem_t					sessResourceItem[NG_MAX_SESSION_NUM];	
+	PduSessResourceItem_t					sessResourceItem[NG_MAX_SESSION_NUM];
     UINT8                                   allSessRlsFlag;
 } NgapUeReleaseComplete_t;
 
@@ -899,7 +911,7 @@ typedef struct ngapRrcInactiveTransitionReport
 ***********************************************************************************
 ***********************************************************************************/
 /* Register Confirm (NG Setup Response)*/
-typedef struct ngapRegistergNBCnf 
+typedef struct ngapRegistergNBCnf
 {
 	Instance_t								instance;
     UINT8                                   numAmf;             /* Number of AMF connected */
@@ -918,7 +930,7 @@ typedef struct ngapUeRadioCapaCheckReq
 {
 	UINT16									bitMask;
 	Instance_t								instance;
-    AmfUeNgapId_t                           amfUeNgapId; 
+    AmfUeNgapId_t                           amfUeNgapId;
     UINT64			                        ranUeNgapId;
     UeRadioCapability_t                     ueRadioCapability;//Optional
 }NgapUeRadioCapaCheckReq_t;
@@ -934,7 +946,7 @@ typedef struct ngapDLNas
 {
 	UINT16									bitMask;
 	Instance_t								instance;
-    AmfUeNgapId_t                           amfUeNgapId; 
+    AmfUeNgapId_t                           amfUeNgapId;
     UINT64			                        ranUeNgapId;
     AmfName_t                               oldAmfName;
     INT64				                    ranPagPriority;
@@ -1012,11 +1024,11 @@ typedef struct ngapUeReleaseCommand
 {
 	/* UE_NGAP_IDs_PR */
 	Instance_t								instance;
-	NgapIdType_e							ngapIdType;						
+	NgapIdType_e							ngapIdType;
     INT64			                        ranUeNgapId;
     AmfUeNgapId_t                           amfUeNgapId;
     NgapCause_e                             cause;
-}NgapUeReleaseCommand_t; 
+}NgapUeReleaseCommand_t;
 
 /* Handover Command */
 #define HANDOVER_COMMAND_NAS_SECURITY_PARAM_FROM_NGRAN_PRESENT	(1 << 0)
@@ -1051,7 +1063,7 @@ typedef struct ngapHandoverPreparationFailure
 #define HANDOVER_REQUEST_MOBILITY_RESTRICTION_INFO_PRESENT			(1 << 4)
 #define	HANDOVER_REQUEST_LOCATION_REPORT_REQUEST_TYPE_PRESENT		(1 << 5)
 #define HANDOVER_REQUEST_RRC_INACTIVE_TRANS_REPORT_REQUEST_PRESNET 	(1 << 6)
-#define HANDOVER_REQUEST_REDIRECT_VOICE_FB_PRESNET					(1 << 7)	
+#define HANDOVER_REQUEST_REDIRECT_VOICE_FB_PRESNET					(1 << 7)
 typedef struct ngapHandoverRequest
 {
 	UINT16 									bitMask;
@@ -1136,7 +1148,7 @@ typedef struct ngapPathSwitchRequestFailure
 	AmfUeNgapId_t                           amfUeNgapId;
     UINT64			                        ranUeNgapId;
 	UINT8									rlsSessNum;
-	PathSwitchRlsPduSessItem_t				rlsPduSessItem[NG_MAX_SESSION_NUM];				
+	PathSwitchRlsPduSessItem_t				rlsPduSessItem[NG_MAX_SESSION_NUM];
 }NgapPathSwitchRequestFailure_t;
 /**********************************************************************************
 ***********************************************************************************
@@ -1186,7 +1198,7 @@ typedef struct
 
 #define GBR_QOS_FLOW_INFO_MAX_PACKET_LOSSRATE_DOWNLINK_PRESENT			(1 << 0)
 #define GBR_QOS_FLOW_INFO_MAX_PACKET_LOSSRATE_UPLINK_PRESENT		    (1 << 1)
-typedef struct gbrQoSFlowInformation 
+typedef struct gbrQoSFlowInformation
 {
     UINT16								    bitMask;
     UINT64	                            	maxFlowBitRateDownlink;
@@ -1208,9 +1220,9 @@ typedef struct
 	/* QoS_Characteristics_PR */
 	QosCharact_t							qosCharacter;
     AllocAndRetenPriority_t		            ngRanAllAndRetentionPriority;
-    GBRQoSFlowInformation_t                 gbrQoSFlowInformation;/* OPTIONAL */ 
+    GBRQoSFlowInformation_t                 gbrQoSFlowInformation;/* OPTIONAL */
 	/* e_ReflectiveQosAttribute */
-    ReflectiveQosAttribute_e	            reflectiveQosAttribute;/* OPTIONAL */ 
+    ReflectiveQosAttribute_e	            reflectiveQosAttribute;/* OPTIONAL */
 	/* e_AdditionalQosFlowInformation */
     AddQosFlowInfo_e          				addiQosFlowInfo;/* OPTIONAL */
 	INT64									pagingPolicyInd;/* OPTIONAL */
@@ -1373,9 +1385,9 @@ typedef struct
 	UINT64									hFN;
 }PdcpCount_t;
 
-#define PDCP_SN_STATUS_INFORMATION_RECEIVE_PDCP_SDU_STATUSPRESENT		(1 << 0)	
+#define PDCP_SN_STATUS_INFORMATION_RECEIVE_PDCP_SDU_STATUSPRESENT		(1 << 0)
 typedef struct
-{    
+{
 	UINT16									bitMask;
     UINT64									receivePdcpSDUBitNum;/* OPTIONAL */
 	UINT64									receiveStatusofPdcpSDU[2048]; /*Length: 1 - 131072 */
@@ -1461,7 +1473,7 @@ typedef struct dFIResponse
 	UINT16									 bitMask;
 	UpTransLayerInfo_t                       ulDataForwarding;/*optional*/
 	UpTransLayerInfo_t                       dlDataForwarding;/*optional*/
-} DFIResponse_t; 
+} DFIResponse_t;
 
 #define DRB_TO_MODIFY_ITEM_SDAP_CONFIG_PRESENT						(1 << 0)
 #define DRB_TO_MODIFY_ITEM_PDCP_CONFIG_PRESENT						(1 << 1)
@@ -1560,15 +1572,15 @@ typedef struct pduSessionResourceToRemoveList
 typedef struct ieCriticalityDiagnostics
 {
 	Criticality_e			 				 ieCriticality;
-	E1apProtocolIeId_e                     	 protocolIEId; 
+	E1apProtocolIeId_e                     	 protocolIEId;
 	ErrorType_e						         typeOfError;
 }E1IECriticalityDiagnostics_t;
 
-#define    PROCEDURE_CODE_PRESENT          		(1 << 0) 
-#define    TRIGGER_MESSAGE_TYPE_PRESENT         (1 << 1) 
-#define    PROCDURE_CRITICALITY_PRESENT         (1 << 2) 
-#define    TRANSACTION_ID_PRESENT               (1 << 3) 
-#define    IE_CRITICALITY_DIAGNOSTICS_PRESENT   (1 << 4) 
+#define    PROCEDURE_CODE_PRESENT          		(1 << 0)
+#define    TRIGGER_MESSAGE_TYPE_PRESENT         (1 << 1)
+#define    PROCDURE_CRITICALITY_PRESENT         (1 << 2)
+#define    TRANSACTION_ID_PRESENT               (1 << 3)
+#define    IE_CRITICALITY_DIAGNOSTICS_PRESENT   (1 << 4)
 typedef struct criticalitydiagnostics
 {
     UINT16                                   bitMask;
@@ -1583,7 +1595,7 @@ typedef struct criticalitydiagnostics
 typedef struct e1apCause
 {
 	E1apCausePr_e	present;
-	union E1apCause_u 
+	union E1apCause_u
 	{
 		E1apCauseRadioNetwork_e	 	e1apRadioNetwork;
 		E1apCauseTransport_e	 	e1apTransport;
@@ -1592,8 +1604,8 @@ typedef struct e1apCause
 	} choice;
 } E1apCause_t;
 
-#define    PART_E1_INTERFACE_GNBCUCPUEID_PRESENT         (1 << 0) 
-#define    PART_E1_INTERFACE_GNBCUUPUEID_PRESENT         (1 << 1) 
+#define    PART_E1_INTERFACE_GNBCUCPUEID_PRESENT         (1 << 0)
+#define    PART_E1_INTERFACE_GNBCUUPUEID_PRESENT         (1 << 1)
 
 typedef struct partE1InterfaceItem
 {
@@ -1611,7 +1623,7 @@ typedef struct partE1InterfaceList
 typedef struct e1apResetType
 {
 	E1apResetPr_e	present;
-	union E1apReset_u 
+	union E1apReset_u
 	{
 		INT64                       resetAll;
         PartE1InterfaceList_t       PartE1InterfaceList;
@@ -1637,7 +1649,7 @@ typedef struct ifmE1apResetAck
 {
     UINT16                                  bitMask;
     UINT64                                  transactionId;
-    PartE1InterfaceList_t                   PartE1InterfaceList;/*optional*/   
+    PartE1InterfaceList_t                   PartE1InterfaceList;/*optional*/
     E1Criticalitydiagnostics_t              criticalDiagnostics;/*optional*/
 } IfmE1apResetAck_t;
 
@@ -1687,7 +1699,7 @@ typedef struct e1apBearerContextSetupReq
 	UINT64									ueDlMaxIPDR;/*optional*/
     PlmnId_t                                servPlmnId;
 	/* e_ActivityNotificationLevel */
-    ActNotiLevel_e							actNotiLevel;	
+    ActNotiLevel_e							actNotiLevel;
 	/* Inactivity_Timer_t */
     INT64                      				inactTimer;/*optional*/
 	/* e_BearerContextStatusChange */
@@ -1764,7 +1776,7 @@ typedef struct e1apPduSessionResourceToList
 typedef struct e1apBearerContextModReq
 {
     UINT16                                   bitMask;
-	NrCellId_t								 cellId;							 
+	NrCellId_t								 cellId;
     UINT32                   				 gnbCucpUeE1apId;
     UINT32                   				 gnbCuupUeE1apId;
 	SecuInfo_t                     			 secuInfo; ///< Optional field
@@ -1792,11 +1804,11 @@ typedef struct e1apBearerContextRelCmd
 typedef struct  gnbCuupName
 {
     char                                     gnbCuupName[MAX_LENGTH_GNBCUUP_NAME];
-        
+
 }GnbCuupName_t;
 
 #define DATA_FORWARDING_INFO_UL_DATA_FORWARD_PRESENT	(1 << 0)
-#define DATA_FORWARDING_INFO_DL_DATA_FORWARD_PRESENT	(1 << 1)  
+#define DATA_FORWARDING_INFO_DL_DATA_FORWARD_PRESENT	(1 << 1)
 typedef struct qosFlowItemIEs
 {
     UINT8                                    qosFlowIndicator;
@@ -1816,13 +1828,13 @@ typedef struct drbSetupItem
     UINT8                                 	 drId;
     DFIResponse_t      						 dataForwardInfoRsp;/*optional*/
     UPParametersList_t                       upPara;
-    QoSFlowList_t                            flowSetupList; 
+    QoSFlowList_t                            flowSetupList;
     FlowFailedlist_t                         flowFailedlist;/*optional*/
 } DRBSetupItem_t;
 typedef struct drbSetupList
 {
     UINT8                                    drbSetupNum;
-    DRBSetupItem_t                           drbSetupItem[e1ap_maxnoofDRBs]; 
+    DRBSetupItem_t                           drbSetupItem[e1ap_maxnoofDRBs];
 } DRBSetupList_t;
 
 typedef struct
@@ -1832,7 +1844,7 @@ typedef struct
 }DRBFailItem_t;
 
 typedef struct drbFailedList
-{   
+{
 	UINT8									 drbFailNum;
 	DRBFailItem_t							 drbFailItem[e1ap_maxnoofDRBs];
 } DRBFailedList_t;
@@ -1890,7 +1902,7 @@ typedef struct dRBModifyItem
 typedef struct dRBModifyList
 {
     UINT8                                    drbModifyItemNum;
-    DRBModifyItem_t                        	 drbModifyItem[e1ap_maxnoofDRBs]; 
+    DRBModifyItem_t                        	 drbModifyItem[e1ap_maxnoofDRBs];
 } DRBModifyList_t;
 
 #define PDU_SESSION_RESOURCE_MODIFY_DL_UP_TNL_INFO_PRESENT          	(1 << 0)
@@ -2002,11 +2014,11 @@ typedef struct e1apRegistergNBReq
 {
     Instance_t                              instance;
     UINT8                                   state;
-    GnbCuupName_t                           gnbCuupName;              
+    GnbCuupName_t                           gnbCuupName;
 }E1apRegistergNBReq_t;
 
-/* 该消息结构应该挪到 CUUP/INC 目录下  TBD  */
-typedef struct e1apRegistergNBCnf 
+/* 锟斤拷锟斤拷息锟结构应锟斤拷挪锟斤拷 CUUP/INC 目录锟斤拷  TBD  */
+typedef struct e1apRegistergNBCnf
 {
     Instance_t                              instance;
     UINT8                                   state;
@@ -2020,13 +2032,13 @@ typedef struct e1apRegistergNBCnf
 /* Deregister Indication */
 typedef struct e1apDeregisteredgNBInd
 {
-    Instance_t                              instance;                            
+    Instance_t                              instance;
 } E1apDeregisteredgNBInd_t;
 
 typedef struct UpbPlmnCfgInfolist
 {
     UINT32									 bPlmnNum;
-	E1apUpbPlmnCfgInfo_t					 bPlmnCfgInfo[e1ap_maxnoofSPLMNs];                         
+	E1apUpbPlmnCfgInfo_t					 bPlmnCfgInfo[e1ap_maxnoofSPLMNs];
 } E1apUpbPlmnCfgInfoList_t;
 
 #define E1AP_REGISTER_REQ_UPNAME_PRESENT		(1 << 0)
@@ -2119,7 +2131,7 @@ typedef struct dRBSetupModItem
 typedef struct dRBSetupModList
 {
     UINT8                                    drbSetupModItemNum;
-    DRBSetupModItem_t                        drbSetupModItem[e1ap_maxnoofDRBs]; 
+    DRBSetupModItem_t                        drbSetupModItem[e1ap_maxnoofDRBs];
 } DRBSetupModList_t;
 
 #define PDU_SESSION_RESOURCE_SETUP_MOD_SECURITY_RESULT_PRESENT          (1 << 0)
@@ -2256,5 +2268,3 @@ typedef struct ifmE1apBearCtxInactiveNotify
 
 
 #endif  /* __CUMODULEINTERFACEH__*/
-
-

@@ -1,9 +1,21 @@
-﻿/******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+/******************************************************************************
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 #ifndef _CU_COMMON_H_
 #define _CU_COMMON_H_
 
@@ -30,11 +42,11 @@ extern "C" {
 typedef enum
 {
     MODULE_OM,
-    MODULE_CUCP_E1, 
+    MODULE_CUCP_E1,
     MODULE_CUUP_E1  ,
     MODULE_NG,
     MODULE_Xn,
-    MODULE_F1_C,    
+    MODULE_F1_C,
     MODULE_CUC,
     MODULE_RRC,
     MODULE_PDCP_C,
@@ -44,14 +56,14 @@ typedef enum
     MODULE_SDAP,
     MODULE_F1_U,
     MODULE_F1_GTPU,
-    
+
 }CuModule_e;
 
 
 
 typedef enum CuCpVosTask
 {
-    CUCP_OMADP_VOS_TASK,  
+    CUCP_OMADP_VOS_TASK,
     CUC_VOS_TASK,
     CUCP_NG_C_VOS_TASK,
     CUCP_F1_C_VOS_TASK,
@@ -59,16 +71,16 @@ typedef enum CuCpVosTask
 #ifdef AMF_TEST
     AMF_VOS_TASK,
 #endif
-	CP_MAX_VOS_TASK  
+	CP_MAX_VOS_TASK
 }CuCpVosTask_e;
 
 typedef enum CuUpVosTask
 {
-    UP_OMADP_VOS_TASK,    
+    UP_OMADP_VOS_TASK,
 	UP_DL_VOS_TASK,
 	UP_UL_VOS_TASK,
 	UP_GTPU_VOS_TASK,
-	UP_MAX_VOS_TASK  
+	UP_MAX_VOS_TASK
 }CuUpVosTask_e;
 
 typedef enum
@@ -115,16 +127,16 @@ typedef enum
     CUUP_F1GTPU_UL_TASK,
     /*注意：请新增任务定义在注释中间*/
     CUUP_GTPU_USER_TASK,
-    CUUP_PDCPU_USER_TASK,   
-    CUUP_SDAP_USER_TASK,   
-        
-        
+    CUUP_PDCPU_USER_TASK,
+    CUUP_SDAP_USER_TASK,
+
+
     /*注意：请新增任务定义在注释中间*/
     CUUP_END_USER_TASK=400,
 }CuupUserTask_e;
 
 
-typedef struct 
+typedef struct
 {
     UINT8 cuName[MAX_CU_NAME_LEN];  /* CU Name */
     UINT32 nodeID;
@@ -133,23 +145,23 @@ typedef struct
 
     IpAddress_t amfIpAddr;
     IpAddress_t umfIpAddr;
-    
+
     IpAddress_t cucpF1SctpIpAddr;
     IpAddress_t cuupF1GtpuIpAddr;
 
     IpAddress_t duF1SctpIpAddr;
     IpAddress_t duF1GtpuIpAddr;
-    
+
     IpAddress_t cucpE1SctpIpAddr;
     IpAddress_t cuupE1SctpIpAddr;
-    
+
     IpAddress_t cucpNgSctpIpAddr;
-    IpAddress_t cuupNgGtpuIpAddr;      
+    IpAddress_t cuupNgGtpuIpAddr;
 
     IpAddress_t cuXnSctpIpAddr;
 }CuCommCfg_t;
 
-typedef struct 
+typedef struct
 {
     UINT8   NodeBName[MAX_CU_NAME_LEN];
     UINT32 procId;
@@ -157,11 +169,11 @@ typedef struct
     CuCommCfg_t commCfg;
     UINT8  cuStackState;
     UINT8  omState;
-    
+
     UINT8  printDebug;
     UINT8  printLevel;
     UINT8  interLogFlag;
-    
+
 } CuCtrlBlock_t;
 
 typedef struct
@@ -170,27 +182,27 @@ typedef struct
 	NrCellId_t  CellId[MAX_CELL_NUM];
 }CellIdList_t;
 
-typedef struct oamCuUpNetElementActReq 
+typedef struct oamCuUpNetElementActReq
 {
 	UINT8		actCellNum;
-	CellIdList_t	cellIdList;	
+	CellIdList_t	cellIdList;
 } OamCuUpNetElementActReq_t;
 
-typedef struct oamCuUpCellActRsp 
+typedef struct oamCuUpCellActRsp
 {
 	UINT8		successCellNum;
 	UINT8		failCellNum;
 	NrCellId_t	failCellId[MAX_CELL_NUM];
 } OamCuUpCellActRsp_t;
 
-typedef struct oamCuCpNetElementActReq 
+typedef struct oamCuCpNetElementActReq
 {
-	UINT8		cuCpNetElementAct[MAX_CELL_NUM];	
+	UINT8		cuCpNetElementAct[MAX_CELL_NUM];
 } OamCuCpNetElementActReq_t;
 
-typedef struct oamCuCpCellActRsp 
+typedef struct oamCuCpCellActRsp
 {
-	UINT8		cuCpCellActFlag[MAX_CELL_NUM];	
+	UINT8		cuCpCellActFlag[MAX_CELL_NUM];
 } OamCuCpCellActRsp_t;
 
 typedef enum
@@ -199,9 +211,9 @@ typedef enum
 	SRB1 = 1,
 	SRB2 = 2,
 	SRB3 = 3,
-	
+
 }SRB_e;
-        
+
 
 
 
@@ -209,8 +221,5 @@ typedef enum
 #ifdef __cplusplus
 }
 #endif
-            
+
 #endif  /* _CU_COMMON_H_*/
-
-
-

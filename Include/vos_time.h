@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 
 
 #ifndef	__VOS_TIME_H__
@@ -30,39 +42,39 @@ typedef struct LOCAL_TIME {
 
 
 
-/** 
+/**
  * 获取当前时间
  * @param[in]   vos_time     存储时间的指针
  * @return      成功返回 VOS_OK，失败则返回其他
- */ 
+ */
 LONG VOS_local_time( VOS_LOCAL_TIME *vos_time );
 
 
-/** 
+/**
  * 获取当前时间
  * @param[out]   sys_time     时间
  * @return      返回值同 sys_time
- */ 
+ */
 LONG VOS_time( LONG *sys_time );
 
-/** 
+/**
  * 时间转换，local time 转成秒数
  * @param[out]   sys_time     时间
  * @return      返回 sys_time 对应的秒数
- */ 
+ */
 LONG VOS_mkTime(const VOS_LOCAL_TIME *sys_time );
 
 
-/** 
+/**
  * 时间转换，秒数 转成local time
  * @param[out]   sys_time     时间
  * @param[in ]   time         时间秒数
  * @return      成功返回 VOS_OK，失败则返回其他
- */ 
+ */
 LONG VOS_mkLocalTime( VOS_LOCAL_TIME *sys_time ,LONG time);
 
 
-/** 
+/**
  * 获得时间字符串 YYYY-MM-DD hh:mm:ss
  *  如果sys_time非空则根据sys_time转换，否则根据time转换，time为0时取当前时间转换，
  *  转换完成后存入str中
@@ -74,7 +86,7 @@ LONG VOS_mkLocalTime( VOS_LOCAL_TIME *sys_time ,LONG time);
 CHAR *VOS_mkLocalTimeStr( VOS_LOCAL_TIME *sys_time ,LONG time,CHAR str[VOS_TIME_STR_LEN]);
 
 
-/** 
+/**
  * 将时间字符串 YYYY-MM-DD hh:mm:ss 转换，为VOS_LOCAL_TIME 和 LONG型
  *  sys_time和time不为空则填入转换后的值，某一项不需要可以使用NULL
  * @param[in ]   str          时间字符串
@@ -85,7 +97,7 @@ CHAR *VOS_mkLocalTimeStr( VOS_LOCAL_TIME *sys_time ,LONG time,CHAR str[VOS_TIME_
 LONG VOS_StrmkLocalTime( CHAR str[VOS_TIME_STR_LEN],VOS_LOCAL_TIME *sys_time ,LONG *time);
 
 
-/** 
+/**
  * 将时间秒数转换成 snmp 时间
  * @param[in ]   sys_time     时间秒数
  * @param[out]   snmpTime     时间
@@ -98,4 +110,3 @@ LONG vos_time2snmp(LONG sys_time,VOS_SNMP_DateAndTime_t *snmpTime);
 #endif	/* end of __cplusplus */
 
 #endif	/* end of __VOS_TIME_H__ */
-

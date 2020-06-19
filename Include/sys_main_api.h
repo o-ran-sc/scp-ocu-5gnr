@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 
 
 #ifndef __SYS_MAIN_API_H__
@@ -115,7 +127,7 @@ typedef struct _devsm_notify_info_s
 
 /*********************  local板卡工作模式、主备状态相关 ******             *****************/
 #define SYS_LOCAL_MODULE_SLOTNO_GET				(sys_local_module_slotno_get())								/*本板槽位号*/
-#define SYS_LOCAL_MODULE_WORKMODE_ISMASTER		SYS_MODULE_WORKMODE_ISMASTER(SYS_LOCAL_MODULE_SLOTNO_GET) 	/*本板是否工作在master*/	
+#define SYS_LOCAL_MODULE_WORKMODE_ISMASTER		SYS_MODULE_WORKMODE_ISMASTER(SYS_LOCAL_MODULE_SLOTNO_GET) 	/*本板是否工作在master*/
 #define SYS_LOCAL_MODULE_WORKMODE_ISSLAVE		SYS_MODULE_WORKMODE_ISSLAVE(SYS_LOCAL_MODULE_SLOTNO_GET) 	/*本板是否工作在slave*/
 #define SYS_LOCAL_MODULE_ISMASTERACTIVE			SYS_MODULE_ISMASTERACTIVE(SYS_LOCAL_MODULE_SLOTNO_GET) 		/*本板是否是主用主控*/
 #define SYS_LOCAL_MODULE_ISMASTERSTANDBY		SYS_MODULE_ISMASTERSTANDBY(SYS_LOCAL_MODULE_SLOTNO_GET) 	/*本板是否是备用主控*/

@@ -1,9 +1,21 @@
 /******************************************************************************
-###############################################################################
-#   Copyright (c) [2017-2020] [ICT/CAS]                                        #
-#   Licensed under the ORAN Software License v1.0 (License)             #
-###############################################################################
-******************************************************************************/
+*
+*   Copyright (c) 2020 ICT/CAS.
+*
+*   Licensed under the O-RAN Software License, Version 1.0 (the "Software License");
+*   you may not use this file except in compliance with the License.
+*   You may obtain a copy of the License at
+*
+*       https://www.o-ran.org/software
+*
+*   Unless required by applicable law or agreed to in writing, software
+*   distributed under the License is distributed on an "AS IS" BASIS,
+*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+*   See the License for the specific language governing permissions and
+*   limitations under the License.
+*
+*******************************************************************************/
+
 #include "sdapCore.h"
 #include "msgb.h"
 #include "bitsPack.h"
@@ -22,7 +34,7 @@ INT8 sdapMatchQosFlowId(SdapInstance_t *pSdapInstance, INT64	qosFlowId, UINT64	*
 	for(i = 0; i < pSdapInstance->drbNum; i++)
 	{
 		drbId = pSdapInstance->drbId[i];
-		
+
 		VOS_MemCpy(&sdapDrbCfg, &pSdapInstance->drbCfg[drbId - 1], sizeof(SdapDrbCfg_t));
 
 		for(j = 0; j < sdapDrbCfg.qfiNum; j++)
@@ -41,7 +53,7 @@ INT8 sdapMatchQosFlowId(SdapInstance_t *pSdapInstance, INT64	qosFlowId, UINT64	*
 		for(i = 0; i < pSdapInstance->drbNum; i++)
 		{
 			drbId = pSdapInstance->drbId[i];
-		
+
 			/* 一个实例，即一个会话内，有且只有一个默认的DRB */
 			if(DEFAULT_DRB_TRUE == pSdapInstance->drbCfg[drbId - 1].sdapCfg.defaultDrbInd)
 			{
@@ -49,7 +61,7 @@ INT8 sdapMatchQosFlowId(SdapInstance_t *pSdapInstance, INT64	qosFlowId, UINT64	*
 				*pFlag = 1;
 				break;
 			}
-		}		
+		}
 	}
 
 	return VOS_OK;
@@ -95,7 +107,7 @@ INT8 sdapPackPduHead(SdapInstance_t *pSdapInstance, INT64	qosFlowId, UINT64	*pDr
 
 		p = msgbHeadPush(pMsgBuff, pduHeadLen);
 		VOS_MemCpy(p, &sdapHeader, pduHeadLen);
-	
+
 		return pduHeadLen;
 	}
 
@@ -114,7 +126,7 @@ INT32 sdapDlDataProc(UINT64 upE1apId, UINT64 sessId, INT64	qosFlowId, MsgbBuff_t
 	SdapGlobalDtat_t	*pGlobalData = NULL;
 	SdapInstance_t		*pSdapInstance = NULL;
 	UINT8 *pMsgHead   = NULL;
-	
+
 	if(NULL == pMsgBuff)
 	{
 		return VOS_ERROR;
@@ -156,7 +168,7 @@ INT32 sdapDlDataProc(UINT64 upE1apId, UINT64 sessId, INT64	qosFlowId, MsgbBuff_t
 	{
 		return VOS_ERROR;
 	}
-	
+
 	/*传递到PDCP-U*/
 	pdcpuDlDataProc(upE1apId, drbId, pMsgBuff, 1);
 
@@ -167,7 +179,7 @@ INT8 sdapUnPackPduHead(MsgbBuff_t *pMsgBuff)
 {
 	BitOpt_t bit;
 	UINT32	bitSize = 0;
-	
+
 	UINT8 *pMsgHead = msgbData(pMsgBuff);
 	UINT16 pduLen = msgbDataUsedLen(pMsgBuff);
 
@@ -193,7 +205,7 @@ INT32 sdapUlDataProc(UINT64 upE1apId, UINT64 sessId, UINT64 drbId, MsgbBuff_t *p
 	sdapUlHeader_t *pHead = NULL;
 	UINT8 qosFlowId = 0xff;
 	UINT8 pduType   = 0;
-	
+
 	SdapGlobalDtat_t	*pGlobalData = NULL;
 	SdapInstance_t		*pSdapInstance = NULL;
 	SdapDrbCfg_t		*pDrbCfgInfo = NULL;
@@ -202,7 +214,7 @@ INT32 sdapUlDataProc(UINT64 upE1apId, UINT64 sessId, UINT64 drbId, MsgbBuff_t *p
 	{
 		return VOS_ERROR;
 	}
-	
+
 	/* Get Instance */
 	pGlobalData = sdapGetUeGlobalData(upE1apId, &flag);
 
@@ -213,7 +225,7 @@ INT32 sdapUlDataProc(UINT64 upE1apId, UINT64 sessId, UINT64 drbId, MsgbBuff_t *p
 
 	/* get instance */
 	for(i = 0; i < pGlobalData->sessNum; i++)
-	{	
+	{
 		if(sessId == pGlobalData->sessId[i])
 		{
 			pSdapInstance = &pGlobalData->sdapInstance[sessId];
@@ -274,11 +286,10 @@ INT32 sdapUlDataProc(UINT64 upE1apId, UINT64 sessId, UINT64 drbId, MsgbBuff_t *p
 			/* qfi not found */
 			return VOS_ERROR;
 		}
-		
+
 	}
-	
+
 
 	/* 调用NG-U的上行数据处理接口 */
 	return nguUlDataProc(upE1apId, sessId, qosFlowId, pMsgBuff);
 }
-
