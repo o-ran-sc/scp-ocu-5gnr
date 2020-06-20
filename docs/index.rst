@@ -12,6 +12,9 @@ Welcome to O-RAN SC scp-ocu-5gnr Documentation
    overview.rst
    release-notes.rst
 
+.. toctree::
+   :maxdepth: 2
+
 
 * :ref:`genindex`
 * :ref:`modindex`
