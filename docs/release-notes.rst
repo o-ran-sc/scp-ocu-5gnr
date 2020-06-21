@@ -4,7 +4,7 @@
 
 
 Release Notes
-=============
+================
 
 
 This document provides the release notes for <0.1.0> of <5gnr>.
@@ -17,13 +17,9 @@ This document provides the release notes for <0.1.0> of <5gnr>.
 Version history
 ---------------
 
-+--------------------+--------------------+--------------------+--------------------+
-| **Date**           | **Ver.**           | **Author**         | **Comment**        |
-|                    |                    |                    |                    |
-+--------------------+--------------------+--------------------+--------------------+
-| 2020-6-16           | Bronze           | ICT/CAS         | Bronze Release        |
-|                    |                    |                    |                    |
-+--------------------+--------------------+--------------------+--------------------+
+Date                    Ver.                 Author               Comment       
+2020-6-16         Bronze             ICT/CAS            Bronze Release       
+
 
 
 
