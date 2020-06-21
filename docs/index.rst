@@ -3,7 +3,7 @@
 .. Copyright (C) 2020 ICT/CAS
 
 Welcome to O-RAN SC scp-ocu-5gnr Documentation
-===========================================
+=============================================================
 
 .. toctree::
    :maxdepth: 2
