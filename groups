@@ -2,4 +2,3 @@
 #
 add1d629e64dce7097223c93ca6e710c1460b5ba                                         	GitHub Replication
 b33569aea5afdacf6ead9ac3de66367db6e4554a                                         	saml/o-ran-sc-gerrit-scp-ocu-5gnr-committers
-ldap:cn=o-ran-sc-gerrit-scp-ocu-5gnr-committers,ou=Groups,dc=freestandards,dc=org	ldap/o-ran-sc-gerrit-scp-ocu-5gnr-committers
